@@ -1,0 +1,92 @@
+{
+  "frozen_at": "2026-11-13T21:04:12+07:00",
+  "stage": "after full Dev evaluation and before any Test retrieval",
+  "selected_strategy": "B",
+  "ranking": [
+    "B",
+    "C",
+    "A"
+  ],
+  "selection_rule": [
+    "Maximize Dev Evidence Hit@3 using the official full-evidence definition.",
+    "If tied, prefer higher mean manual coherence on the ten preselected source positions.",
+    "If still tied, prefer lower measured ingestion time, storage footprint, and operational complexity."
+  ],
+  "dev_metrics": [
+    {
+      "strategy": "A",
+      "split": "dev",
+      "questions": 15,
+      "hit_at_1_n": 3,
+      "hit_at_1_N": 15,
+      "hit_at_1_rate": 0.2,
+      "evidence_hit_at_3_n": 7,
+      "evidence_hit_at_3_N": 15,
+      "evidence_hit_at_3_rate": 0.4666666666666667
+    },
+    {
+      "strategy": "B",
+      "split": "dev",
+      "questions": 15,
+      "hit_at_1_n": 7,
+      "hit_at_1_N": 15,
+      "hit_at_1_rate": 0.4666666666666667,
+      "evidence_hit_at_3_n": 9,
+      "evidence_hit_at_3_N": 15,
+      "evidence_hit_at_3_rate": 0.6
+    },
+    {
+      "strategy": "C",
+      "split": "dev",
+      "questions": 15,
+      "hit_at_1_n": 7,
+      "hit_at_1_N": 15,
+      "hit_at_1_rate": 0.4666666666666667,
+      "evidence_hit_at_3_n": 9,
+      "evidence_hit_at_3_N": 15,
+      "evidence_hit_at_3_rate": 0.6
+    }
+  ],
+  "coherence_mean_by_strategy": {
+    "A": 1.0,
+    "B": 2.0,
+    "C": 2.0
+  },
+  "questions_sha256": "89c5d8251006121cfa252c6753d151fc2a8bb51a865b4054e3172a3870ef3e8a",
+  "code_files_sha256": {
+    "embeddings.py": "e219eb272c1e1eb1dd22e2d5b4d8ffbcd714cb0c1e44b779c07886ff8d2df709",
+    "store.py": "b671f505de1ad29bf5f6f7dd10b26806d632b6d312b50e348f2db205ac55189a",
+    "evaluation.py": "50fb390240042be79bb49f92b0e68ba4577258c0147f807ca6211e1daf155632",
+    "run_benchmark.py": "b1d943a528afa3751d6903f2f844cb4fec6c1598d56e7b89e94c33520851fe6f"
+  },
+  "model": {
+    "provider": "local Sentence Transformers",
+    "name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "dimensions": 384,
+    "device": "cpu",
+    "batch_size": 32,
+    "normalize_embeddings": true,
+    "query_document_processing": "same model and normalization",
+    "sentence_transformers_version": "5.7.0",
+    "transformers_version": "5.22.2",
+    "torch_version": "2.15.0"
+  },
+  "strategies": {
+    "A": {
+      "stored_strategy": "A",
+      "chunking": "fixed 500/overlap 50",
+      "filter": false
+    },
+    "B": {
+      "stored_strategy": "B",
+      "chunking": "paragraph-aware max 1000",
+      "filter": false
+    },
+    "C": {
+      "stored_strategy": "B",
+      "chunking": "identical to B/shared index",
+      "filter": "question.chapter when supplied"
+    }
+  },
+  "test_retrieval_run_at_freeze": false
+}

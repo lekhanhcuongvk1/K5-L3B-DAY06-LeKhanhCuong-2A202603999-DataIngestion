@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "records_reviewed": 45,
+    "complete_and_correct": 45,
+    "filtered_records": 6,
+    "filter_compliant_records": 6
+  },
+  "grounding": {
+    "A": {
+      "n": 5,
+      "score_counts": {
+        "0": 1,
+        "1": 2,
+        "2": 2
+      },
+      "mean_out_of_2": 1.2
+    },
+    "B": {
+      "n": 5,
+      "score_counts": {
+        "0": 2,
+        "1": 1,
+        "2": 2
+      },
+      "mean_out_of_2": 1.0
+    },
+    "C": {
+      "n": 5,
+      "score_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 3
+      },
+      "mean_out_of_2": 1.4
+    }
+  },
+  "review_method": "Metadata was cross-checked against persisted chunk artifacts. Grounding was manually reviewed from the same five Test top-3 traces per strategy; labels assess retrieval evidence, not LLM answer accuracy. Reviewer is the author with Codex assistance.",
+  "limitations": "Single reviewer and five-question Test set may introduce subjective and sampling bias."
+}
