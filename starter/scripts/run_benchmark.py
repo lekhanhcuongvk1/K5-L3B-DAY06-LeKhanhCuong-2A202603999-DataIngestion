@@ -56,7 +56,9 @@ def load_runtime() -> tuple[MyEmbedder, PgVectorStore, dict, dict, dict]:
         raise SystemExit("Frozen questions checksum mismatch")
     model = run_metadata["model"]
     embedder = MyEmbedder(model["name"], device=model["device"], batch_size=model["batch_size"])
-    store = PgVectorStore(database_url, embedder.dimensions)
+    store = PgVectorStore(
+        database_url, embedder.dimensions, table_name=run_metadata["store"]["table"]
+    )
     return embedder, store, questions, split, run_metadata
 
 

@@ -20,6 +20,9 @@ STARTER = Path(__file__).resolve().parents[1]
 ROOT = STARTER.parent
 RESULTS = ROOT / "results"
 MODEL_DEFAULT = "bkai-foundation-models/vietnamese-bi-encoder"
+MODEL_REVISION = "84f9d9ada0d1a3c37557398b9ae9fcedcdf40be0"
+MODEL_LICENSE = "Apache-2.0"
+TABLE_NAME = "day06_chunks_vi"
 
 
 def file_sha256(path: Path) -> str:
@@ -37,6 +40,17 @@ def main() -> None:
     if not database_url:
         raise SystemExit("DATABASE_URL missing; copy starter/.env.example to starter/.env")
     model_name = os.getenv("EMBEDDING_MODEL") or MODEL_DEFAULT
+    if model_name != MODEL_DEFAULT:
+        raise SystemExit(
+            f"EMBEDDING_MODEL={model_name!r} differs from the frozen Vietnamese model "
+            f"{MODEL_DEFAULT!r}; update starter/.env before CP3"
+        )
+    selection_path = RESULTS / "model_selection.json"
+    if not selection_path.is_file():
+        raise SystemExit("results/model_selection.json is required before official CP3 indexing")
+    model_selection = json.loads(selection_path.read_text(encoding="utf-8"))
+    if model_selection.get("selected_model") != model_name:
+        raise SystemExit("EMBEDDING_MODEL differs from the frozen Dev-only model selection")
 
     started = time.perf_counter()
     units, processing_errors = load_text_manifest(ROOT / "data" / "manifest.json")
@@ -53,7 +67,7 @@ def main() -> None:
     vectors_b = embedder.embed_documents([chunk.text for chunk in chunks_b])
     embedding_seconds = time.perf_counter() - embedding_started
 
-    store = PgVectorStore(database_url, embedder.dimensions)
+    store = PgVectorStore(database_url, embedder.dimensions, table_name=TABLE_NAME)
     store.create_schema()
     ingestion_started = time.perf_counter()
     store.upsert("A", chunks_a, vectors_a)
@@ -70,7 +84,7 @@ def main() -> None:
         )
 
     benchmark = json.loads((ROOT / "benchmark" / "questions.json").read_text(encoding="utf-8"))
-    smoke_ids = {"Q01", "Q02", "Q08"}
+    smoke_ids = {"Q01", "Q04", "Q10"}
     smoke_questions = [
         question
         for question in benchmark["questions"]
@@ -93,9 +107,10 @@ def main() -> None:
             if len(hits) != 3:
                 raise RuntimeError(f"{strategy}/{question['id']} returned {len(hits)} hits")
             if filters and any(
-                hit["metadata"].get("chapter") != filters["chapter"] for hit in hits
+                any(hit["metadata"].get(key) != value for key, value in filters.items())
+                for hit in hits
             ):
-                raise RuntimeError(f"C/{question['id']} violated its chapter filter")
+                raise RuntimeError(f"C/{question['id']} violated its collection filter")
             smoke_traces.append(
                 {
                     "question_id": question["id"],
@@ -133,6 +148,8 @@ def main() -> None:
         "model": {
             "provider": "local Sentence Transformers",
             "name": model_name,
+            "revision": MODEL_REVISION,
+            "license": MODEL_LICENSE,
             "dimensions": embedder.dimensions,
             "device": embedder.device,
             "batch_size": embedder.batch_size,
@@ -152,7 +169,7 @@ def main() -> None:
         "strategies": {
             "A": {"stored_strategy": "A", "chunking": "fixed 500/overlap 50", "filter": False},
             "B": {"stored_strategy": "B", "chunking": "paragraph-aware max 1000", "filter": False},
-            "C": {"stored_strategy": "B", "chunking": "identical to B/shared index", "filter": "question.chapter when supplied"},
+            "C": {"stored_strategy": "B", "chunking": "identical to B/shared index", "filter": "question.collection when supplied"},
         },
         "counts": {
             "source_units": len(units),
@@ -175,6 +192,8 @@ def main() -> None:
             "smoke_question_ids": sorted(smoke_ids),
             "smoke_split": "dev",
             "test_retrieval_run": False,
+            "model_selection_artifact": "results/model_selection.json",
+            "model_selection_questions_sha256": model_selection["questions_sha256"],
         },
     }
     (RESULTS / "run_metadata.json").write_text(

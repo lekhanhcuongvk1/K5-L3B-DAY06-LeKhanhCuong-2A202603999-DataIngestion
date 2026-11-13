@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import math
+import re
 from typing import Any
 
 import psycopg
@@ -14,15 +15,22 @@ from .models import Chunk
 class PgVectorStore:
     TABLE = "day06_chunks"
     FILTER_COLUMNS = {"document_id", "source", "page", "unit_id"}
-    FILTER_METADATA = {"chapter", "version", "sequence_in_chapter"}
+    FILTER_METADATA = {
+        "chapter", "collection", "version", "sequence_in_chapter", "sequence_in_source"
+    }
 
-    def __init__(self, database_url: str, dimensions: int) -> None:
+    def __init__(
+        self, database_url: str, dimensions: int, table_name: str = "day06_chunks"
+    ) -> None:
         if not database_url.strip():
             raise ValueError("database_url must not be empty")
         if dimensions <= 0:
             raise ValueError("dimensions must be positive")
+        if not re.fullmatch(r"[a-z][a-z0-9_]{0,62}", table_name):
+            raise ValueError("table_name must be a safe lower-case PostgreSQL identifier")
         self.database_url = database_url
         self.dimensions = dimensions
+        self.TABLE = table_name
 
     def create_schema(self) -> None:
         statement = sql.SQL(
@@ -80,11 +88,9 @@ class PgVectorStore:
                 raise ValueError(f"Expected vector dimension {self.dimensions}")
             if not all(math.isfinite(value) for value in vector):
                 raise ValueError("Vector contains a non-finite value")
-        document_ids = {chunk.document_id for chunk in chunks}
-        if len(document_ids) != 1:
-            raise ValueError("Call upsert once per strategy and document version")
-        document_id = next(iter(document_ids))
-        chunk_ids = [chunk.chunk_id for chunk in chunks]
+        chunk_ids_by_document: dict[str, list[str]] = {}
+        for chunk in chunks:
+            chunk_ids_by_document.setdefault(chunk.document_id, []).append(chunk.chunk_id)
         rows = [
             (
                 strategy,
@@ -128,13 +134,15 @@ class PgVectorStore:
                     ).format(table=sql.Identifier(self.TABLE)),
                     rows,
                 )
-                cursor.execute(
-                    sql.SQL(
-                        "DELETE FROM {table} "
-                        "WHERE strategy = %s AND document_id = %s AND NOT (chunk_id = ANY(%s))"
-                    ).format(table=sql.Identifier(self.TABLE)),
-                    (strategy, document_id, chunk_ids),
-                )
+                for document_id, chunk_ids in chunk_ids_by_document.items():
+                    cursor.execute(
+                        sql.SQL(
+                            "DELETE FROM {table} "
+                            "WHERE strategy = %s AND document_id = %s "
+                            "AND NOT (chunk_id = ANY(%s))"
+                        ).format(table=sql.Identifier(self.TABLE)),
+                        (strategy, document_id, chunk_ids),
+                    )
 
     def search(self, strategy: str, query_vector: list[float], top_k: int = 3,
                filters: dict[str, Any] | None = None) -> list[dict[str, Any]]:

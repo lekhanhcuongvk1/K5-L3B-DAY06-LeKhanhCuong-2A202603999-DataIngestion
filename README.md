@@ -33,8 +33,17 @@ CP2 đã xử lý đủ 30 đơn vị với 0 lỗi và tạo hai artifacts có 
 500 ký tự/overlap 50 có 759 chunks; B paragraph-aware tối đa 1.000 ký tự/không
 overlap có 418 chunks. Toàn bộ span, metadata, coverage và ID ổn định đã được
 [`validate_cp2.py`](starter/scripts/validate_cp2.py) kiểm tra; chạy lại tạo
-artifacts byte-identical. CP3–CP5 chưa chạy. Kết quả tiếng Anh cũ được giữ trong
-lịch sử Git tại commit `7c311d6`, không được trình bày như kết quả corpus mới.
+artifacts byte-identical.
+
+CP3 đã so sánh model trên cùng B chunks và 15 Dev: MiniLM đạt Hit@1 `10/15`,
+Evidence Hit@3 `12/15`; BKAI đạt Hit@1 `9/15`, Evidence Hit@3 `14/15`. Theo rule
+ưu tiên Hit@3 đã khóa, BKAI được chọn cho A/B/C. Index chính thức nằm ở bảng
+`day06_chunks_vi` với `vector(768)`, 759 hàng A và 418 hàng B; C dùng chung B và
+chỉ thêm `collection` filter. Hai lượt upsert giữ nguyên count, 9 smoke traces
+chỉ dùng Q01/Q04/Q10 thuộc Dev và Test chưa mở. Lần chạy chính thức đo được
+159,373 giây tổng, trong đó embedding A+B là 152,737 giây; chi phí API 0 USD.
+CP4–CP5 chưa chạy. Kết quả tiếng Anh cũ được giữ trong lịch sử Git tại commit
+`7c311d6`, không được trình bày như kết quả corpus mới.
 
 ## Xác minh CP0
 
@@ -53,6 +62,11 @@ python starter/scripts/build_manifest.py
 python starter/scripts/validate_benchmark.py
 python starter/scripts/prepare_chunks.py
 python starter/scripts/validate_cp2.py
+starter\.venv\Scripts\python starter\scripts\run_model_bakeoff.py
+Push-Location starter
+.\.venv\Scripts\python -m src.run
+Pop-Location
+starter\.venv\Scripts\python starter\scripts\validate_cp3.py
 $env:PYTHONPATH = (Resolve-Path '.\starter\.venv\Lib\site-packages').Path
 python -m unittest discover -s tests -v
 ```

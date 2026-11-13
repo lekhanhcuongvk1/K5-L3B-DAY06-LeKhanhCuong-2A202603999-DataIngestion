@@ -1,0 +1,65 @@
+{
+  "stage": "CP3 model bake-off on frozen Dev only; Test unopened",
+  "strategy": "B paragraph-aware max 1000, no filter",
+  "selection_rule": [
+    "Compare model candidates only on Strategy B chunks and the 15 Dev questions.",
+    "Maximize Dev Evidence Hit@3 using the official full-evidence definition.",
+    "If tied, prefer higher Hit@1; if still tied, prefer lower measured latency and operational cost.",
+    "Freeze exactly one model for the official A/B/C experiment before Test."
+  ],
+  "questions_sha256": "235c97d0a3db97f5a805a1d0a77351f78f0cdbef19363cbc00e35162f1f46305",
+  "test_retrieval_run": false,
+  "candidates": [
+    {
+      "candidate": "multilingual_minilm",
+      "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "table": "day06_chunks_vi_minilm_dev",
+      "dimensions": 384,
+      "dev_questions": 15,
+      "hit_at_1_n": 10,
+      "hit_at_1_N": 15,
+      "evidence_hit_at_3_n": 12,
+      "evidence_hit_at_3_N": 15,
+      "mean_query_embedding_ms": 21.973,
+      "mean_retrieval_ms": 31.433,
+      "model_load_seconds": 6.062,
+      "document_embedding_seconds": 9.796,
+      "two_upsert_passes_seconds": 0.42,
+      "total_seconds": 17.161,
+      "cost_usd": 0,
+      "stored_chunk_count_after_each_upsert": [
+        418,
+        418
+      ]
+    },
+    {
+      "candidate": "vietnamese_bkai",
+      "model": "bkai-foundation-models/vietnamese-bi-encoder",
+      "table": "day06_chunks_vi_bkai_dev",
+      "dimensions": 768,
+      "dev_questions": 15,
+      "hit_at_1_n": 9,
+      "hit_at_1_N": 15,
+      "evidence_hit_at_3_n": 14,
+      "evidence_hit_at_3_N": 15,
+      "mean_query_embedding_ms": 37.104,
+      "mean_retrieval_ms": 36.163,
+      "model_load_seconds": 5.132,
+      "document_embedding_seconds": 54.13,
+      "two_upsert_passes_seconds": 0.483,
+      "total_seconds": 60.914,
+      "cost_usd": 0,
+      "stored_chunk_count_after_each_upsert": [
+        418,
+        418
+      ]
+    }
+  ],
+  "ranking": [
+    "vietnamese_bkai",
+    "multilingual_minilm"
+  ],
+  "selected_candidate": "vietnamese_bkai",
+  "selected_model": "bkai-foundation-models/vietnamese-bi-encoder",
+  "selected_dimensions": 768
+}

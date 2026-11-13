@@ -4,8 +4,10 @@ Bài làm sử dụng Docker Compose để chạy PostgreSQL + pgvector local. T
 `experiment/vietnamese-corpus`, CP0 đã khóa corpus Wikipedia tiếng Việt và
 model ứng viên `bkai-foundation-models/vietnamese-bi-encoder`. CP1 đã khóa
 benchmark mới; CP2 đã tạo 759 chunks A và 418 chunks B với metadata
-`collection`. Embedding/index và kết quả A/B/C sẽ được tạo ở CP3–CP4. Không sử
-dụng các kết quả corpus tiếng Anh trong lịch sử Git cho nhánh này.
+`collection`. CP3 đã chọn BKAI bằng Dev-only model bake-off, tạo index
+`day06_chunks_vi` 768 chiều và xác minh A/B/C smoke, filter, persistence cùng
+idempotence. Benchmark đầy đủ và Test chỉ được chạy ở CP4. Không sử dụng các
+kết quả corpus tiếng Anh trong lịch sử Git cho nhánh này.
 
 ## Cấu trúc
 
