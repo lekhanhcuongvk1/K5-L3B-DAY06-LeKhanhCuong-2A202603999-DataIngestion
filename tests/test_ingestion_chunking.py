@@ -87,14 +87,20 @@ class ManifestIngestionTests(unittest.TestCase):
     def test_real_manifest_loads_every_unit_with_traceability(self) -> None:
         manifest = json.loads((ROOT / "data" / "manifest.json").read_text(encoding="utf-8"))
         units, errors = load_text_manifest(ROOT / "data" / "manifest.json")
+        filter_field = manifest["filter_metadata"]["field"]
         self.assertEqual(errors, [])
         self.assertEqual(len(units), manifest["summary"]["content_unit_count"])
-        self.assertEqual(sum(len(unit.text) for unit in units), 231_959)
+        self.assertEqual(
+            sum(len(unit.text) for unit in units),
+            manifest["summary"]["normalized_character_count_in_units"],
+        )
         self.assertTrue(all(unit.page is None for unit in units))
-        self.assertTrue(all(unit.metadata["chapter"] for unit in units))
+        self.assertTrue(all(unit.metadata[filter_field] for unit in units))
         self.assertEqual(len({unit.unit_id for unit in units}), len(units))
 
     def test_real_corpus_chunk_coverage_spans_and_metadata(self) -> None:
+        manifest = json.loads((ROOT / "data" / "manifest.json").read_text(encoding="utf-8"))
+        filter_field = manifest["filter_metadata"]["field"]
         units, errors = load_text_manifest(ROOT / "data" / "manifest.json")
         self.assertEqual(errors, [])
         for unit in units:
@@ -113,7 +119,9 @@ class ManifestIngestionTests(unittest.TestCase):
                 self.assertEqual(chunk.source, unit.source)
                 self.assertEqual(chunk.unit_id, unit.unit_id)
                 self.assertEqual(chunk.page, unit.page)
-                self.assertEqual(chunk.metadata["chapter"], unit.metadata["chapter"])
+                self.assertEqual(
+                    chunk.metadata[filter_field], unit.metadata[filter_field]
+                )
                 self.assertEqual(chunk.metadata["version"], unit.metadata["version"])
             self.assertTrue(all(len(chunk.text) <= 500 for chunk in chunks_a))
             self.assertTrue(all(len(chunk.text) <= 1_000 for chunk in chunks_b))

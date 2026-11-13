@@ -1,7 +1,0 @@
-strategy,split,questions,hit_at_1_n,hit_at_1_N,hit_at_1_rate,evidence_hit_at_3_n,evidence_hit_at_3_N,evidence_hit_at_3_rate
-A,dev,15,3,15,0.2,7,15,0.4666666666666667
-A,test,5,0,5,0.0,0,5,0.0
-B,dev,15,7,15,0.4666666666666667,9,15,0.6
-B,test,5,1,5,0.2,2,5,0.4
-C,dev,15,7,15,0.4666666666666667,9,15,0.6
-C,test,5,1,5,0.2,3,5,0.6

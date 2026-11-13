@@ -1,8 +1,10 @@
 # Starter · PostgreSQL + pgvector
 
-Bài làm sử dụng Docker Compose để chạy PostgreSQL + pgvector local. Các file
-trong `src/` đã được hoàn thiện để đọc corpus, chunk A/B, tạo embedding local,
-lưu/search vector và đánh giá A/B/C. Kết quả thực nghiệm nằm tại `../results/`.
+Bài làm sử dụng Docker Compose để chạy PostgreSQL + pgvector local. Trên nhánh
+`experiment/vietnamese-corpus`, CP0 đã khóa corpus Wikipedia tiếng Việt và
+model ứng viên `bkai-foundation-models/vietnamese-bi-encoder`; benchmark,
+chunk artifacts và kết quả A/B/C sẽ được tạo lại ở CP1–CP4. Không sử dụng các
+kết quả của corpus tiếng Anh trong lịch sử Git như kết quả cho nhánh này.
 
 ## Cấu trúc
 
@@ -59,7 +61,7 @@ docker compose -p day6_student_starter stop
 ## 3. Hoàn thiện pipeline
 
 1. Đặt corpus vào `data/` hoặc cung cấp manifest/hướng dẫn truy cập. Đọc [GUIDE.md](../GUIDE.md) về **30 trang nội dung**, quyền dữ liệu và metadata.
-2. Kiểm tra code trong `src/`. Pipeline lưu document ID, nguồn, unit/span và trường filter `chapter`.
+2. Kiểm tra code trong `src/`. Pipeline lưu document ID, nguồn, unit/span và trường filter `collection` lấy từ chuyên mục MediaWiki.
 3. Xây ít nhất ba cấu hình; ví dụ A fixed-size, B theo đoạn, C như B nhưng có filter. Cần cùng corpus, model và benchmark; nạp lại không nhân đôi và xử lý chunk cũ khi dữ liệu đổi.
 4. Tự viết ít nhất 20 câu hỏi kèm evidence, tách dev/test trước khi thử theo [BENCHMARK.md](../BENCHMARK.md). Lưu trace top-3 và báo cáo đủ năm tiêu chí.
 5. Chạy `python -m src.run` từ thư mục `starter/` để tái tạo embedding/index và Dev-only smoke traces. Dùng `python scripts/validate_cp4.py` từ root repository để kiểm tra artifacts benchmark đã đóng băng; không chạy lại stage Test.

@@ -19,7 +19,7 @@ from .store import PgVectorStore
 STARTER = Path(__file__).resolve().parents[1]
 ROOT = STARTER.parent
 RESULTS = ROOT / "results"
-MODEL_DEFAULT = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+MODEL_DEFAULT = "bkai-foundation-models/vietnamese-bi-encoder"
 
 
 def file_sha256(path: Path) -> str:

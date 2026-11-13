@@ -88,6 +88,7 @@ def load_text_manifest(
     root = manifest_path.parent.parent
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     source = manifest["source"]
+    filter_field = manifest.get("filter_metadata", {}).get("field", "chapter")
     units_by_path: dict[str, list[dict[str, object]]] = {}
     for unit in manifest["units"]:
         units_by_path.setdefault(unit["source_path"], []).append(unit)
@@ -127,7 +128,11 @@ def load_text_manifest(
             )
             continue
 
-        for unit in sorted(units_by_path.get(relative_path, []), key=lambda item: item["sequence_in_chapter"]):
+        source_units = sorted(
+            units_by_path.get(relative_path, []),
+            key=lambda item: int(item.get("sequence", item.get("sequence_in_chapter", 0))),
+        )
+        for unit in source_units:
             start = int(unit["normalized_start"])
             end = int(unit["normalized_end"])
             text = normalized[start:end]
@@ -144,7 +149,7 @@ def load_text_manifest(
             global_sequence += 1
             pages.append(
                 DocumentPage(
-                    document_id=source["source_id"],
+                    document_id=str(unit.get("source_id", source["source_id"])),
                     source=relative_path,
                     page=None,
                     unit_id=str(unit["unit_id"]),
@@ -152,9 +157,13 @@ def load_text_manifest(
                     text=text,
                     metadata={
                         "location_type": "content_unit",
-                        "chapter": unit["chapter"],
-                        "version": source["version"],
-                        "sequence_in_chapter": unit["sequence_in_chapter"],
+                        filter_field: unit[filter_field],
+                        "version": str(file_record.get("revision_id", source["version"])),
+                        "title": unit.get("title", file_record.get("title")),
+                        "canonical_url": file_record.get("canonical_url"),
+                        "sequence_in_source": unit.get(
+                            "sequence_in_source", unit.get("sequence_in_chapter", 1)
+                        ),
                         "normalized_start": start,
                         "normalized_end": end,
                     },
