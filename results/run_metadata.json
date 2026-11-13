@@ -1,0 +1,71 @@
+{
+  "stage": "CP3 Dev-only smoke; Test retrieval not run",
+  "model": {
+    "provider": "local Sentence Transformers",
+    "name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "dimensions": 384,
+    "device": "cpu",
+    "batch_size": 32,
+    "normalize_embeddings": true,
+    "query_document_processing": "same model and normalization",
+    "sentence_transformers_version": "5.7.0",
+    "transformers_version": "5.22.2",
+    "torch_version": "2.15.0"
+  },
+  "store": {
+    "backend": "PostgreSQL 16 + pgvector 0.8.7",
+    "table": "day06_chunks",
+    "metric": "cosine",
+    "search": "exact sequential scan; no approximate index",
+    "persistent": true
+  },
+  "strategies": {
+    "A": {
+      "stored_strategy": "A",
+      "chunking": "fixed 500/overlap 50",
+      "filter": false
+    },
+    "B": {
+      "stored_strategy": "B",
+      "chunking": "paragraph-aware max 1000",
+      "filter": false
+    },
+    "C": {
+      "stored_strategy": "B",
+      "chunking": "identical to B/shared index",
+      "filter": "question.chapter when supplied"
+    }
+  },
+  "counts": {
+    "source_units": 68,
+    "A": 543,
+    "B": 289,
+    "C_physical_rows": 0,
+    "C_shared_with": "B",
+    "after_first_upsert": {
+      "A": 543,
+      "B": 289
+    },
+    "after_second_upsert": {
+      "A": 543,
+      "B": 289
+    }
+  },
+  "timing_seconds": {
+    "model_load": 5.983,
+    "embedding_A_and_B": 19.166,
+    "two_upsert_passes_A_and_B": 0.818,
+    "total": 26.385
+  },
+  "cost_usd": 0,
+  "benchmark_integrity": {
+    "questions_sha256": "89c5d8251006121cfa252c6753d151fc2a8bb51a865b4054e3172a3870ef3e8a",
+    "smoke_question_ids": [
+      "Q01",
+      "Q02",
+      "Q08"
+    ],
+    "smoke_split": "dev",
+    "test_retrieval_run": false
+  }
+}
