@@ -1,0 +1,188 @@
+{
+  "schema_version": 2,
+  "benchmark_id": "vi-wikipedia-computing-gold-v1",
+  "created_at": "2026-11-14",
+  "source_id": "vi-wikipedia-computing-snapshot-2026-11-13",
+  "questions": [
+    {
+      "id": "Q01", "split": "dev", "type": "paraphrase",
+      "question": "Vì sao chương trình in lời chào thế giới thường được dùng khi một người mới học ngôn ngữ lập trình?",
+      "expected_answer": "Vì đây là chương trình rất đơn giản, hữu ích để minh họa cú pháp cơ bản và kiểm tra ngôn ngữ hoặc hệ thống hoạt động.",
+      "gold_source_id": "viwiki-974178", "gold_source_path": "data/vi_wikipedia_computing/974178-hello-world-chuong-trinh-may-tinh.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-974178-u01",
+      "evidence_quote": "Vì đây là chương trình đơn giản nhất ở mọi ngôn ngữ lập trình , cho nên nó thường được dùng trong việc mô phỏng cho người mới bắt đầu về cú pháp lập trình cơ bản trong ngôn ngữ lập trình, hay để xác định ngôn ngữ hoặc hệ thống nào đó hoạt động tốt.",
+      "filter": null
+    },
+    {
+      "id": "Q02", "split": "dev", "type": "conditional",
+      "question": "Callback không đồng bộ khác callback đồng bộ như thế nào về thời điểm có thể được gọi so với lúc hàm trả về?",
+      "expected_answer": "Callback đồng bộ được gọi trước khi hàm trả về, còn callback không đồng bộ có thể được gọi sau khi hàm đã trả về.",
+      "gold_source_id": "viwiki-3508673", "gold_source_path": "data/vi_wikipedia_computing/3508673-callback.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-3508673-u01",
+      "evidence_quote": "Trong khi callback đồng bộ được gọi trước khi hàm trả về (trong ví dụ ngôn ngữ lập trình C bên dưới, hàm callback đồng bộ ở đây là hàm main), callback không đồng bộ có thể được gọi sau khi hàm trả về.",
+      "filter": null
+    },
+    {
+      "id": "Q03", "split": "dev", "type": "direct",
+      "question": "Ada được Bộ Quốc phòng Mỹ hướng tới để thay thế khoảng bao nhiêu ngôn ngữ dùng cho hệ thống nhúng?",
+      "expected_answer": "Khoảng 500 ngôn ngữ.",
+      "gold_source_id": "viwiki-113366", "gold_source_path": "data/vi_wikipedia_computing/113366-ada-ngon-ngu-lap-trinh.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-113366-u01",
+      "evidence_quote": "Nhu cầu của Lầu Năm Góc lúc đó là một ngôn ngữ lập trình duy nhất thay thế cho khoảng 500 ngôn ngữ dùng cho các hệ thống nhúng ( embedded ).",
+      "filter": null
+    },
+    {
+      "id": "Q04", "split": "dev", "type": "metadata_disambiguation",
+      "question": "Trong phạm vi tài liệu về ngôn ngữ lập trình, kiểu dữ liệu trung tâm của APL là gì?",
+      "expected_answer": "Mảng đa chiều.",
+      "gold_source_id": "viwiki-14596871", "gold_source_path": "data/vi_wikipedia_computing/14596871-apl-ngon-ngu-lap-trinh.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-14596871-u01",
+      "evidence_quote": "Kiểu dữ liệu trung tâm của nó là mảng đa chiều .",
+      "filter": {"collection": "ngon_ngu_lap_trinh"}
+    },
+    {
+      "id": "Q05", "split": "dev", "type": "direct",
+      "question": "AWK xử lý loại tệp nào và dựa trên nguyên lý chính nào?",
+      "expected_answer": "AWK xử lý tệp văn bản theo nguyên lý khớp mẫu.",
+      "gold_source_id": "viwiki-311392", "gold_source_path": "data/vi_wikipedia_computing/311392-awk.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-311392-u01",
+      "evidence_quote": "AWK là ngôn ngữ lập trình được nhằm mục đích xử lý các Tập tin chữ ( text file ) theo nguyên lý khớp mẫu ( pattern matching ); đồng thời còn là tên gọi một chương trình trong hệ điều hành UNIX .",
+      "filter": null
+    },
+    {
+      "id": "Q06", "split": "dev", "type": "direct",
+      "question": "Ai phát minh BASIC và việc đó diễn ra tại đâu?",
+      "expected_answer": "John George Kemeny và Thomas Eugene Kurtz tại Đại học Dartmouth.",
+      "gold_source_id": "viwiki-10293", "gold_source_path": "data/vi_wikipedia_computing/10293-basic.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-10293-u01",
+      "evidence_quote": "BASIC được phát minh vào năm 1963 bởi các giáo sư John George Kemeny và Thomas Eugene Kurtz thuộc viện Đại học Dartmouth ( Dartmouth College ).",
+      "filter": null
+    },
+    {
+      "id": "Q07", "split": "dev", "type": "conditional",
+      "question": "Tên ban đầu của GCC là gì và khi mới ra đời nó chỉ hỗ trợ ngôn ngữ nào?",
+      "expected_answer": "Tên ban đầu là GNU C Compiler và lúc đầu chỉ hỗ trợ C.",
+      "gold_source_id": "viwiki-274357", "gold_source_path": "data/vi_wikipedia_computing/274357-bo-trinh-dich-gnu.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-274357-u01",
+      "evidence_quote": "Tên gốc của GCC là GNU C Compiler (Trình biên dịch C của GNU), do ban đầu nó chỉ hỗ trợ dịch ngôn ngữ lập trình C , GCC 1.0 được phát hành vào năm 1987, sau đó được mở rộng hỗ trợ dịch C++ vào tháng 12 cùng năm đó.",
+      "filter": null
+    },
+    {
+      "id": "Q08", "split": "dev", "type": "paraphrase",
+      "question": "Mục tiêu thiết kế của ngôn ngữ D kết hợp những phẩm chất nào của ngôn ngữ biên dịch và ngôn ngữ động?",
+      "expected_answer": "Kết hợp hiệu suất và độ an toàn của ngôn ngữ biên dịch với sức biểu đạt của ngôn ngữ động hiện đại.",
+      "gold_source_id": "viwiki-13486371", "gold_source_path": "data/vi_wikipedia_computing/13486371-d-ngon-ngu-lap-trinh.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-13486371-u01",
+      "evidence_quote": "Mục tiêu thiết kế của D cố gắng kết hợp hiệu suất và sự an toàn của các ngôn ngữ biên dịch với sức mạnh biểu đạt của các ngôn ngữ năng động hiện đại.",
+      "filter": null
+    },
+    {
+      "id": "Q09", "split": "dev", "type": "direct",
+      "question": "Trong phân loại Flynn, hệ đa xử lý dùng chung bộ nhớ được xếp vào loại hệ thống nào?",
+      "expected_answer": "MIMD.",
+      "gold_source_id": "viwiki-3638191", "gold_source_path": "data/vi_wikipedia_computing/3638191-a-xu-ly.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-3638191-u01",
+      "evidence_quote": "Trong phân loại của Flynn, bộ đa xử lý được định nghĩa như trên là những hệ thống MIMD.",
+      "filter": null
+    },
+    {
+      "id": "Q10", "split": "dev", "type": "metadata_disambiguation",
+      "question": "Trong phạm vi khoa học máy tính, hình học tính toán được ứng dụng vào ba lĩnh vực nào được nêu trong tài liệu?",
+      "expected_answer": "Nhận dạng mẫu, đồ họa máy tính và thiết kế kỹ thuật.",
+      "gold_source_id": "viwiki-522210", "gold_source_path": "data/vi_wikipedia_computing/522210-hinh-hoc-tinh-toan.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-522210-u01",
+      "evidence_quote": "Hình học tính được ứng dụng trong nhận dạng mẫu , đồ họa máy tính , thiết kế kĩ thuật,...",
+      "filter": {"collection": "khoa_hoc_may_tinh"}
+    },
+    {
+      "id": "Q11", "split": "dev", "type": "paraphrase",
+      "question": "Khoa học máy tính nghiên cứu nền tảng lý thuyết của những gì và việc áp dụng chúng ở đâu?",
+      "expected_answer": "Nghiên cứu cơ sở lý thuyết về thông tin và tính toán, cùng việc thực hiện và ứng dụng trong các hệ thống máy tính.",
+      "gold_source_id": "viwiki-4663", "gold_source_path": "data/vi_wikipedia_computing/4663-khoa-hoc-may-tinh.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-4663-u01",
+      "evidence_quote": "Khoa học máy tính ( tiếng Anh : computer science ) là ngành nghiên cứu các cơ sở lý thuyết về thông tin và tính toán cùng sự thực hiện và ứng dụng của chúng trong các hệ thống máy tính .",
+      "filter": null
+    },
+    {
+      "id": "Q12", "split": "dev", "type": "direct",
+      "question": "AlexNet thắng ILSVRC 2012 với tỷ lệ lỗi top-5 bao nhiêu và hơn đội về nhì bao nhiêu điểm phần trăm?",
+      "expected_answer": "Tỷ lệ lỗi top-5 là 15,3% và tốt hơn đội về nhì 10,8 điểm phần trăm.",
+      "gold_source_id": "viwiki-19991504", "gold_source_path": "data/vi_wikipedia_computing/19991504-alexnet.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-19991504-u01",
+      "evidence_quote": "Mạng đạt tỉ lệ lỗi top-5 là 15,3% để giành chiến thắng, vượt trội hơn đội về nhì hơn 10,8 điểm phần trăm.",
+      "filter": null
+    },
+    {
+      "id": "Q13", "split": "dev", "type": "direct",
+      "question": "Biểu thức chính quy mô tả điều gì?",
+      "expected_answer": "Một xâu mô tả một tập các xâu khác theo các quy tắc cú pháp nhất định.",
+      "gold_source_id": "viwiki-9777", "gold_source_path": "data/vi_wikipedia_computing/9777-bieu-thuc-chinh-quy.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-9777-u01",
+      "evidence_quote": "Biểu thức chính quy ( tiếng Anh : regular expression , viết tắt là regexp , regex hay regxp ) là một xâu miêu tả một bộ các xâu khác, theo những quy tắc cú pháp nhất định.",
+      "filter": null
+    },
+    {
+      "id": "Q14", "split": "dev", "type": "metadata_disambiguation",
+      "question": "Trong phạm vi khoa học máy tính, bộ mã hóa của VAE ánh xạ đầu vào thành gì thay vì một vector cố định?",
+      "expected_answer": "Một phân phối xác suất, thường là phân phối chuẩn.",
+      "gold_source_id": "viwiki-20005728", "gold_source_path": "data/vi_wikipedia_computing/20005728-bo-ma-hoa-tu-ong-bien-phan.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-20005728-u01",
+      "evidence_quote": "Về cấu trúc, VAE tương tự bộ tự mã hóa thông thường với một bộ mã hóa và một bộ giải mã, nhưng khác ở điểm then chốt: thay vì ánh xạ đầu vào thành một vector cố định trong không gian biểu diễn, bộ mã hóa của VAE ánh xạ đầu vào thành một phân phối xác suất (thường là phân phối chuẩn ) và bộ giải mã lấy mẫu từ phân phối đó để tái tạo đầu vào.",
+      "filter": {"collection": "khoa_hoc_may_tinh"}
+    },
+    {
+      "id": "Q15", "split": "dev", "type": "paraphrase",
+      "question": "Bộ tự mã hóa học hai hàm nào để tạo rồi khôi phục biểu diễn dữ liệu?",
+      "expected_answer": "Hàm mã hóa biến đổi đầu vào và hàm giải mã tái tạo đầu vào từ biểu diễn đã mã hóa.",
+      "gold_source_id": "viwiki-19509897", "gold_source_path": "data/vi_wikipedia_computing/19509897-bo-tu-ma-hoa.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-19509897-u01",
+      "evidence_quote": "Bộ tự mã hóa học hai hàm số: một hàm mã hóa biến đổi dữ liệu đầu vào, và một hàm giải mã tái tạo lại dữ liệu đầu vào từ biểu diễn đã mã hóa.",
+      "filter": null
+    },
+    {
+      "id": "Q16", "split": "test", "type": "metadata_disambiguation",
+      "question": "Trong phạm vi tài liệu về ngôn ngữ lập trình, ALGOL 68 kế thừa ngôn ngữ nào và hướng đến phạm vi ứng dụng ra sao?",
+      "expected_answer": "Kế thừa ALGOL 60 và được thiết kế cho phạm vi ứng dụng rộng hơn nhiều.",
+      "gold_source_id": "viwiki-15481628", "gold_source_path": "data/vi_wikipedia_computing/15481628-algol-68.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-15481628-u01",
+      "evidence_quote": "ALGOL 68 (viết tắt của Algorithmic Language 1968 ) là ngôn ngữ lập trình máy tính dùng lệnh được coi là sự kế thừa của ngôn ngữ lập trình ALGOL 60 , được thiết kế với mục tiêu phạm vi ứng dụng rộng hơn nhiều và cú pháp và ngữ nghĩa được xác định chặt chẽ hơn.",
+      "filter": {"collection": "ngon_ngu_lap_trinh"}
+    },
+    {
+      "id": "Q17", "split": "test", "type": "conditional",
+      "question": "Một tập lệnh AutoIt đã được chuyển đổi có thể chạy trên máy không cài trình thông dịch hay không, và dưới dạng gì?",
+      "expected_answer": "Có; nó có thể được chuyển thành tệp thực thi nén, độc lập.",
+      "gold_source_id": "viwiki-437651", "gold_source_path": "data/vi_wikipedia_computing/437651-autoit.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-437651-u01",
+      "evidence_quote": "Một tập lệnh tự động hóa AutoIt có thể được chuyển đổi thành một tệp thực thi được nén, độc lập có thể chạy trên máy tính ngay cả khi chúng không được cài đặt trình thông dịch AutoIt.",
+      "filter": null
+    },
+    {
+      "id": "Q18", "split": "test", "type": "metadata_disambiguation",
+      "question": "Trong phạm vi khoa học máy tính, AlphaFold dự đoán cấu trúc 3D của protein từ dữ liệu đầu vào nào?",
+      "expected_answer": "Từ trình tự amino acid.",
+      "gold_source_id": "viwiki-20018632", "gold_source_path": "data/vi_wikipedia_computing/20018632-alphafold.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-20018632-u01",
+      "evidence_quote": "AlphaFold là một hệ thống trí tuệ nhân tạo (AI) do Google DeepMind phát triển nhằm dự đoán cấu trúc 3D của protein dựa trên trình tự amino acid .",
+      "filter": {"collection": "khoa_hoc_may_tinh"}
+    },
+    {
+      "id": "Q19", "split": "test", "type": "direct",
+      "question": "CIFAR-10 và CIFAR-100 có bao nhiêu ảnh, kích thước ảnh là bao nhiêu và được chia thành bao nhiêu ảnh huấn luyện, kiểm thử?",
+      "expected_answer": "60.000 ảnh màu RGB 32×32, gồm 50.000 ảnh huấn luyện và 10.000 ảnh kiểm thử.",
+      "gold_source_id": "viwiki-19997266", "gold_source_path": "data/vi_wikipedia_computing/19997266-cifar-10.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-19997266-u01",
+      "evidence_quote": "Cả hai tập dữ liệu đều gồm 60.000 ảnh 32×32 pixel màu RGB , chia thành 50.000 ảnh huấn luyện và 10.000 ảnh kiểm thử.",
+      "filter": null
+    },
+    {
+      "id": "Q20", "split": "test", "type": "paraphrase",
+      "question": "Cơ chế chú ý tính độ liên quan bằng cách so sánh truy vấn với thành phần nào, rồi dùng kết quả đó ra sao?",
+      "expected_answer": "So sánh query với các key, chuyển độ liên quan thành trọng số và lấy tổng có trọng số của các value để tạo đầu ra.",
+      "gold_source_id": "viwiki-20015378", "gold_source_path": "data/vi_wikipedia_computing/20015378-co-che-chu-y.txt",
+      "gold_page": null, "gold_unit_id": "viwiki-20015378-u01",
+      "evidence_quote": "Cơ chế chú ý hoạt động bằng cách so sánh từng phần tử cần xử lý (gọi là \"truy vấn\" query ) với tất cả các phần tử khác trong dữ liệu đầu vào (gọi là \"khóa\" key ), nhằm tính ra mức độ liên quan giữa chúng. Mức độ liên quan này sau đó được chuyển thành trọng số, trong đó phần tử nào giống nhau giữa hai bên nhiều hơn sẽ nhận trọng số cao hơn.",
+      "filter": null
+    }
+  ]
+}

@@ -71,7 +71,7 @@ def validate(freeze: bool = False) -> dict[str, int]:
         raise ValueError("benchmark_id differs between questions and split manifest")
 
     units = {unit["unit_id"]: unit for unit in corpus_manifest["units"]}
-    source_id = corpus_manifest["source"]["source_id"]
+    filter_field = corpus_manifest["filter_metadata"]["field"]
     filter_values = set(corpus_manifest["filter_metadata"]["distinct_values"])
     normalize_text = load_normalizer()
     normalized_sources: dict[str, str] = {}
@@ -100,8 +100,6 @@ def validate(freeze: bool = False) -> dict[str, int]:
                    for field in ("id", "type", "question", "expected_answer", "gold_source_id",
                                  "gold_source_path", "gold_unit_id", "evidence_quote")):
             errors.append(f"{label}: required text fields must be non-empty strings")
-        if question["gold_source_id"] != source_id:
-            errors.append(f"{label}: unknown gold_source_id")
         if question["gold_page"] is not None:
             errors.append(f"{label}: non-paginated corpus requires gold_page=null")
 
@@ -109,6 +107,8 @@ def validate(freeze: bool = False) -> dict[str, int]:
         if unit is None:
             errors.append(f"{label}: unknown gold_unit_id {question['gold_unit_id']!r}")
             continue
+        if question["gold_source_id"] != unit.get("source_id"):
+            errors.append(f"{label}: gold_source_id does not match its unit")
         if unit["source_path"] != question["gold_source_path"]:
             errors.append(f"{label}: gold source path does not match its unit")
             continue
@@ -130,12 +130,12 @@ def validate(freeze: bool = False) -> dict[str, int]:
             filter_count += 1
             if split == "test":
                 test_filter_count += 1
-            if not isinstance(filters, dict) or set(filters) != {"chapter"}:
-                errors.append(f"{label}: filter must be null or a chapter-only object")
-            elif filters["chapter"] not in filter_values:
-                errors.append(f"{label}: chapter filter value is absent from the corpus")
-            elif filters["chapter"] != unit["chapter"]:
-                errors.append(f"{label}: chapter filter does not match the gold unit")
+            if not isinstance(filters, dict) or set(filters) != {filter_field}:
+                errors.append(f"{label}: filter must be null or a {filter_field}-only object")
+            elif filters[filter_field] not in filter_values:
+                errors.append(f"{label}: {filter_field} value is absent from the corpus")
+            elif filters[filter_field] != unit[filter_field]:
+                errors.append(f"{label}: {filter_field} filter does not match the gold unit")
 
     if len(ids) != len(set(ids)):
         errors.append("Question IDs are not unique")
