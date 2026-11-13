@@ -8,3 +8,7 @@ __pycache__/
 .DS_Store
 .pytest_cache/
 *.sqlite
+
+# Local PostgreSQL data and downloaded model caches must not enter the repo.
+starter/pg_data/
+.cache/

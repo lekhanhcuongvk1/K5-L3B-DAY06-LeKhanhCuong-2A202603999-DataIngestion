@@ -1,0 +1,785 @@
+{
+  "manifest_version": 1,
+  "generated_at": "2026-11-13",
+  "source": {
+    "source_id": "python-tutorial-3.11.18",
+    "title": "The Python Tutorial — Python 3.11.18 documentation",
+    "source_path_or_url": "https://docs.python.org/3.11/tutorial/",
+    "download_url": "https://docs.python.org/3.11/archives/python-3.11.18-docs-text.zip",
+    "version": "3.11.18",
+    "accessed_at": "2026-11-13",
+    "license_or_permission": "Python Software Foundation License Version 2",
+    "license_url": "https://docs.python.org/3.11/license.html",
+    "copyright_notice": "Copyright © 2001-2026 Python Software Foundation; All Rights Reserved",
+    "local_license_path": "data/python_tutorial/LICENSE.txt"
+  },
+  "counting_method": {
+    "content_type": "non-paginated plain text",
+    "rule": "Ordered paragraph-aligned units, each with at least 1,500 normalized characters",
+    "normalization": "Unicode NFC; LF newlines; repeated horizontal whitespace collapsed; blank lines reduced to paragraph separators",
+    "minimum_characters_per_unit": 1500,
+    "excluded_files": [
+      "LICENSE.txt",
+      "index.txt"
+    ],
+    "exclusion_reason": "Navigation index and license text are retained for provenance but not counted as tutorial content"
+  },
+  "filter_metadata": {
+    "field": "chapter",
+    "source": "Official tutorial file/chapter boundaries in the downloaded archive",
+    "distinct_values": [
+      "01_whetting_your_appetite",
+      "02_using_the_python_interpreter",
+      "03_informal_introduction",
+      "04_control_flow",
+      "05_data_structures",
+      "06_modules",
+      "07_input_and_output",
+      "08_errors_and_exceptions",
+      "09_classes",
+      "10_standard_library",
+      "11_standard_library_part_2",
+      "12_virtual_environments",
+      "13_what_now",
+      "14_interactive_input_editing",
+      "15_floating_point_arithmetic",
+      "16_appendix"
+    ],
+    "purpose": "Disambiguate retrieval when a question or supplied context identifies a tutorial chapter"
+  },
+  "summary": {
+    "content_file_count": 16,
+    "content_unit_count": 68,
+    "normalized_character_count_in_units": 231959,
+    "minimum_unit_character_count": 2108,
+    "maximum_unit_character_count": 4691
+  },
+  "files": [
+    {
+      "path": "data/python_tutorial/appetite.txt",
+      "chapter": "01_whetting_your_appetite",
+      "sha256": "89ef124ae698b3205ba90b90622713bf692158e38cade640b38091c63caf4f1b",
+      "normalized_character_count": 4455,
+      "unit_count": 1
+    },
+    {
+      "path": "data/python_tutorial/interpreter.txt",
+      "chapter": "02_using_the_python_interpreter",
+      "sha256": "3f1c4105ea641aa68f6b28b9981255edec6a7e3dfedf1f7a11b2d2e5a5c4f1d6",
+      "normalized_character_count": 6021,
+      "unit_count": 2
+    },
+    {
+      "path": "data/python_tutorial/introduction.txt",
+      "chapter": "03_informal_introduction",
+      "sha256": "12542318badb8702ec8225931001641bfb865e2bbc97c283e25c0a4b3c2b43d9",
+      "normalized_character_count": 16947,
+      "unit_count": 5
+    },
+    {
+      "path": "data/python_tutorial/controlflow.txt",
+      "chapter": "04_control_flow",
+      "sha256": "4f568b95b4de231e13f089fb1f8c853a7e18210a42dce976f305d3eef83f92a9",
+      "normalized_character_count": 35125,
+      "unit_count": 10
+    },
+    {
+      "path": "data/python_tutorial/datastructures.txt",
+      "chapter": "05_data_structures",
+      "sha256": "e3b8c6efc31f07051569ac3c6f5ed535cbf1529555c27dfeed8baa59f5326102",
+      "normalized_character_count": 22361,
+      "unit_count": 7
+    },
+    {
+      "path": "data/python_tutorial/modules.txt",
+      "chapter": "06_modules",
+      "sha256": "e8b5491f1bb21d2cbb36e96d443f2a3169f44d73f1f23013b1706506253427fe",
+      "normalized_character_count": 23458,
+      "unit_count": 7
+    },
+    {
+      "path": "data/python_tutorial/inputoutput.txt",
+      "chapter": "07_input_and_output",
+      "sha256": "a449f612153bd41bcf1a41f38af1bf242ecad655f30e763a88fe517d54f77104",
+      "normalized_character_count": 18207,
+      "unit_count": 5
+    },
+    {
+      "path": "data/python_tutorial/errors.txt",
+      "chapter": "08_errors_and_exceptions",
+      "sha256": "84bfaa11ece035f3f33c5cfe40d174bf620a95ab8fccbc7fadbcce580af30e64",
+      "normalized_character_count": 20238,
+      "unit_count": 6
+    },
+    {
+      "path": "data/python_tutorial/classes.txt",
+      "chapter": "09_classes",
+      "sha256": "efab02a9f7e45ddb8b0091e36bc4df5cb306e6eeecf3029660b8bc1e657ddbd1",
+      "normalized_character_count": 34125,
+      "unit_count": 10
+    },
+    {
+      "path": "data/python_tutorial/stdlib.txt",
+      "chapter": "10_standard_library",
+      "sha256": "e80f81d41b679bd9e701dd922f3b0933abd5dcc89253e3a8eb67ca6f5d67320a",
+      "normalized_character_count": 10232,
+      "unit_count": 3
+    },
+    {
+      "path": "data/python_tutorial/stdlib2.txt",
+      "chapter": "11_standard_library_part_2",
+      "sha256": "3a96a42c7851d2b6e4760002af4166562c1c17789a93e7a85c112e61ca732fc8",
+      "normalized_character_count": 13620,
+      "unit_count": 4
+    },
+    {
+      "path": "data/python_tutorial/venv.txt",
+      "chapter": "12_virtual_environments",
+      "sha256": "155ca53cea2d56d4c5d9137423ed9585468bc0984a8ce78f1f4a91286397ca0b",
+      "normalized_character_count": 6884,
+      "unit_count": 2
+    },
+    {
+      "path": "data/python_tutorial/whatnow.txt",
+      "chapter": "13_what_now",
+      "sha256": "3861f2aa7dab20f33fb50c62822a1eacc85ee0e0a7b35a7a9079f7f7963435a1",
+      "normalized_character_count": 3097,
+      "unit_count": 1
+    },
+    {
+      "path": "data/python_tutorial/interactive.txt",
+      "chapter": "14_interactive_input_editing",
+      "sha256": "aef71bd0b04ed582b104fce1e93edc3eb5c63d723d91283fdb960e6ceeb37d89",
+      "normalized_character_count": 2108,
+      "unit_count": 1
+    },
+    {
+      "path": "data/python_tutorial/floatingpoint.txt",
+      "chapter": "15_floating_point_arithmetic",
+      "sha256": "392bddada515973301842c39892e3f6a6d0a7e8aad88213095a901d4b6312eb4",
+      "normalized_character_count": 10853,
+      "unit_count": 3
+    },
+    {
+      "path": "data/python_tutorial/appendix.txt",
+      "chapter": "16_appendix",
+      "sha256": "2ffc2ba2fcba2116986e9770dc2aa97f9b61cf0ee4e130e3353557b427d0a468",
+      "normalized_character_count": 4332,
+      "unit_count": 1
+    }
+  ],
+  "units": [
+    {
+      "unit_id": "py311-01-u01",
+      "source_path": "data/python_tutorial/appetite.txt",
+      "chapter": "01_whetting_your_appetite",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 4455,
+      "character_count": 4455
+    },
+    {
+      "unit_id": "py311-02-u01",
+      "source_path": "data/python_tutorial/interpreter.txt",
+      "chapter": "02_using_the_python_interpreter",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 2853,
+      "character_count": 2853
+    },
+    {
+      "unit_id": "py311-02-u02",
+      "source_path": "data/python_tutorial/interpreter.txt",
+      "chapter": "02_using_the_python_interpreter",
+      "sequence_in_chapter": 2,
+      "normalized_start": 2855,
+      "normalized_end": 6021,
+      "character_count": 3166
+    },
+    {
+      "unit_id": "py311-03-u01",
+      "source_path": "data/python_tutorial/introduction.txt",
+      "chapter": "03_informal_introduction",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 3436,
+      "character_count": 3436
+    },
+    {
+      "unit_id": "py311-03-u02",
+      "source_path": "data/python_tutorial/introduction.txt",
+      "chapter": "03_informal_introduction",
+      "sequence_in_chapter": 2,
+      "normalized_start": 3438,
+      "normalized_end": 6872,
+      "character_count": 3434
+    },
+    {
+      "unit_id": "py311-03-u03",
+      "source_path": "data/python_tutorial/introduction.txt",
+      "chapter": "03_informal_introduction",
+      "sequence_in_chapter": 3,
+      "normalized_start": 6874,
+      "normalized_end": 10350,
+      "character_count": 3476
+    },
+    {
+      "unit_id": "py311-03-u04",
+      "source_path": "data/python_tutorial/introduction.txt",
+      "chapter": "03_informal_introduction",
+      "sequence_in_chapter": 4,
+      "normalized_start": 10352,
+      "normalized_end": 13833,
+      "character_count": 3481
+    },
+    {
+      "unit_id": "py311-03-u05",
+      "source_path": "data/python_tutorial/introduction.txt",
+      "chapter": "03_informal_introduction",
+      "sequence_in_chapter": 5,
+      "normalized_start": 13835,
+      "normalized_end": 16947,
+      "character_count": 3112
+    },
+    {
+      "unit_id": "py311-04-u01",
+      "source_path": "data/python_tutorial/controlflow.txt",
+      "chapter": "04_control_flow",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 3312,
+      "character_count": 3312
+    },
+    {
+      "unit_id": "py311-04-u02",
+      "source_path": "data/python_tutorial/controlflow.txt",
+      "chapter": "04_control_flow",
+      "sequence_in_chapter": 2,
+      "normalized_start": 3314,
+      "normalized_end": 6643,
+      "character_count": 3329
+    },
+    {
+      "unit_id": "py311-04-u03",
+      "source_path": "data/python_tutorial/controlflow.txt",
+      "chapter": "04_control_flow",
+      "sequence_in_chapter": 3,
+      "normalized_start": 6645,
+      "normalized_end": 10121,
+      "character_count": 3476
+    },
+    {
+      "unit_id": "py311-04-u04",
+      "source_path": "data/python_tutorial/controlflow.txt",
+      "chapter": "04_control_flow",
+      "sequence_in_chapter": 4,
+      "normalized_start": 10123,
+      "normalized_end": 13207,
+      "character_count": 3084
+    },
+    {
+      "unit_id": "py311-04-u05",
+      "source_path": "data/python_tutorial/controlflow.txt",
+      "chapter": "04_control_flow",
+      "sequence_in_chapter": 5,
+      "normalized_start": 13209,
+      "normalized_end": 16615,
+      "character_count": 3406
+    },
+    {
+      "unit_id": "py311-04-u06",
+      "source_path": "data/python_tutorial/controlflow.txt",
+      "chapter": "04_control_flow",
+      "sequence_in_chapter": 6,
+      "normalized_start": 16617,
+      "normalized_end": 20092,
+      "character_count": 3475
+    },
+    {
+      "unit_id": "py311-04-u07",
+      "source_path": "data/python_tutorial/controlflow.txt",
+      "chapter": "04_control_flow",
+      "sequence_in_chapter": 7,
+      "normalized_start": 20094,
+      "normalized_end": 23585,
+      "character_count": 3491
+    },
+    {
+      "unit_id": "py311-04-u08",
+      "source_path": "data/python_tutorial/controlflow.txt",
+      "chapter": "04_control_flow",
+      "sequence_in_chapter": 8,
+      "normalized_start": 23587,
+      "normalized_end": 27055,
+      "character_count": 3468
+    },
+    {
+      "unit_id": "py311-04-u09",
+      "source_path": "data/python_tutorial/controlflow.txt",
+      "chapter": "04_control_flow",
+      "sequence_in_chapter": 9,
+      "normalized_start": 27057,
+      "normalized_end": 30513,
+      "character_count": 3456
+    },
+    {
+      "unit_id": "py311-04-u10",
+      "source_path": "data/python_tutorial/controlflow.txt",
+      "chapter": "04_control_flow",
+      "sequence_in_chapter": 10,
+      "normalized_start": 30515,
+      "normalized_end": 35125,
+      "character_count": 4610
+    },
+    {
+      "unit_id": "py311-05-u01",
+      "source_path": "data/python_tutorial/datastructures.txt",
+      "chapter": "05_data_structures",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 3250,
+      "character_count": 3250
+    },
+    {
+      "unit_id": "py311-05-u02",
+      "source_path": "data/python_tutorial/datastructures.txt",
+      "chapter": "05_data_structures",
+      "sequence_in_chapter": 2,
+      "normalized_start": 3252,
+      "normalized_end": 6353,
+      "character_count": 3101
+    },
+    {
+      "unit_id": "py311-05-u03",
+      "source_path": "data/python_tutorial/datastructures.txt",
+      "chapter": "05_data_structures",
+      "sequence_in_chapter": 3,
+      "normalized_start": 6355,
+      "normalized_end": 9807,
+      "character_count": 3452
+    },
+    {
+      "unit_id": "py311-05-u04",
+      "source_path": "data/python_tutorial/datastructures.txt",
+      "chapter": "05_data_structures",
+      "sequence_in_chapter": 4,
+      "normalized_start": 9809,
+      "normalized_end": 13146,
+      "character_count": 3337
+    },
+    {
+      "unit_id": "py311-05-u05",
+      "source_path": "data/python_tutorial/datastructures.txt",
+      "chapter": "05_data_structures",
+      "sequence_in_chapter": 5,
+      "normalized_start": 13148,
+      "normalized_end": 16600,
+      "character_count": 3452
+    },
+    {
+      "unit_id": "py311-05-u06",
+      "source_path": "data/python_tutorial/datastructures.txt",
+      "chapter": "05_data_structures",
+      "sequence_in_chapter": 6,
+      "normalized_start": 16602,
+      "normalized_end": 19851,
+      "character_count": 3249
+    },
+    {
+      "unit_id": "py311-05-u07",
+      "source_path": "data/python_tutorial/datastructures.txt",
+      "chapter": "05_data_structures",
+      "sequence_in_chapter": 7,
+      "normalized_start": 19853,
+      "normalized_end": 22361,
+      "character_count": 2508
+    },
+    {
+      "unit_id": "py311-06-u01",
+      "source_path": "data/python_tutorial/modules.txt",
+      "chapter": "06_modules",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 3484,
+      "character_count": 3484
+    },
+    {
+      "unit_id": "py311-06-u02",
+      "source_path": "data/python_tutorial/modules.txt",
+      "chapter": "06_modules",
+      "sequence_in_chapter": 2,
+      "normalized_start": 3486,
+      "normalized_end": 6972,
+      "character_count": 3486
+    },
+    {
+      "unit_id": "py311-06-u03",
+      "source_path": "data/python_tutorial/modules.txt",
+      "chapter": "06_modules",
+      "sequence_in_chapter": 3,
+      "normalized_start": 6974,
+      "normalized_end": 10405,
+      "character_count": 3431
+    },
+    {
+      "unit_id": "py311-06-u04",
+      "source_path": "data/python_tutorial/modules.txt",
+      "chapter": "06_modules",
+      "sequence_in_chapter": 4,
+      "normalized_start": 10407,
+      "normalized_end": 12981,
+      "character_count": 2574
+    },
+    {
+      "unit_id": "py311-06-u05",
+      "source_path": "data/python_tutorial/modules.txt",
+      "chapter": "06_modules",
+      "sequence_in_chapter": 5,
+      "normalized_start": 12983,
+      "normalized_end": 16203,
+      "character_count": 3220
+    },
+    {
+      "unit_id": "py311-06-u06",
+      "source_path": "data/python_tutorial/modules.txt",
+      "chapter": "06_modules",
+      "sequence_in_chapter": 6,
+      "normalized_start": 16205,
+      "normalized_end": 19673,
+      "character_count": 3468
+    },
+    {
+      "unit_id": "py311-06-u07",
+      "source_path": "data/python_tutorial/modules.txt",
+      "chapter": "06_modules",
+      "sequence_in_chapter": 7,
+      "normalized_start": 19675,
+      "normalized_end": 23458,
+      "character_count": 3783
+    },
+    {
+      "unit_id": "py311-07-u01",
+      "source_path": "data/python_tutorial/inputoutput.txt",
+      "chapter": "07_input_and_output",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 3444,
+      "character_count": 3444
+    },
+    {
+      "unit_id": "py311-07-u02",
+      "source_path": "data/python_tutorial/inputoutput.txt",
+      "chapter": "07_input_and_output",
+      "sequence_in_chapter": 2,
+      "normalized_start": 3446,
+      "normalized_end": 6945,
+      "character_count": 3499
+    },
+    {
+      "unit_id": "py311-07-u03",
+      "source_path": "data/python_tutorial/inputoutput.txt",
+      "chapter": "07_input_and_output",
+      "sequence_in_chapter": 3,
+      "normalized_start": 6947,
+      "normalized_end": 10079,
+      "character_count": 3132
+    },
+    {
+      "unit_id": "py311-07-u04",
+      "source_path": "data/python_tutorial/inputoutput.txt",
+      "chapter": "07_input_and_output",
+      "sequence_in_chapter": 4,
+      "normalized_start": 10081,
+      "normalized_end": 13514,
+      "character_count": 3433
+    },
+    {
+      "unit_id": "py311-07-u05",
+      "source_path": "data/python_tutorial/inputoutput.txt",
+      "chapter": "07_input_and_output",
+      "sequence_in_chapter": 5,
+      "normalized_start": 13516,
+      "normalized_end": 18207,
+      "character_count": 4691
+    },
+    {
+      "unit_id": "py311-08-u01",
+      "source_path": "data/python_tutorial/errors.txt",
+      "chapter": "08_errors_and_exceptions",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 3444,
+      "character_count": 3444
+    },
+    {
+      "unit_id": "py311-08-u02",
+      "source_path": "data/python_tutorial/errors.txt",
+      "chapter": "08_errors_and_exceptions",
+      "sequence_in_chapter": 2,
+      "normalized_start": 3446,
+      "normalized_end": 6790,
+      "character_count": 3344
+    },
+    {
+      "unit_id": "py311-08-u03",
+      "source_path": "data/python_tutorial/errors.txt",
+      "chapter": "08_errors_and_exceptions",
+      "sequence_in_chapter": 3,
+      "normalized_start": 6792,
+      "normalized_end": 10166,
+      "character_count": 3374
+    },
+    {
+      "unit_id": "py311-08-u04",
+      "source_path": "data/python_tutorial/errors.txt",
+      "chapter": "08_errors_and_exceptions",
+      "sequence_in_chapter": 4,
+      "normalized_start": 10168,
+      "normalized_end": 13430,
+      "character_count": 3262
+    },
+    {
+      "unit_id": "py311-08-u05",
+      "source_path": "data/python_tutorial/errors.txt",
+      "chapter": "08_errors_and_exceptions",
+      "sequence_in_chapter": 5,
+      "normalized_start": 13432,
+      "normalized_end": 16642,
+      "character_count": 3210
+    },
+    {
+      "unit_id": "py311-08-u06",
+      "source_path": "data/python_tutorial/errors.txt",
+      "chapter": "08_errors_and_exceptions",
+      "sequence_in_chapter": 6,
+      "normalized_start": 16644,
+      "normalized_end": 20238,
+      "character_count": 3594
+    },
+    {
+      "unit_id": "py311-09-u01",
+      "source_path": "data/python_tutorial/classes.txt",
+      "chapter": "09_classes",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 3391,
+      "character_count": 3391
+    },
+    {
+      "unit_id": "py311-09-u02",
+      "source_path": "data/python_tutorial/classes.txt",
+      "chapter": "09_classes",
+      "sequence_in_chapter": 2,
+      "normalized_start": 3393,
+      "normalized_end": 6741,
+      "character_count": 3348
+    },
+    {
+      "unit_id": "py311-09-u03",
+      "source_path": "data/python_tutorial/classes.txt",
+      "chapter": "09_classes",
+      "sequence_in_chapter": 3,
+      "normalized_start": 6743,
+      "normalized_end": 10169,
+      "character_count": 3426
+    },
+    {
+      "unit_id": "py311-09-u04",
+      "source_path": "data/python_tutorial/classes.txt",
+      "chapter": "09_classes",
+      "sequence_in_chapter": 4,
+      "normalized_start": 10171,
+      "normalized_end": 13670,
+      "character_count": 3499
+    },
+    {
+      "unit_id": "py311-09-u05",
+      "source_path": "data/python_tutorial/classes.txt",
+      "chapter": "09_classes",
+      "sequence_in_chapter": 5,
+      "normalized_start": 13672,
+      "normalized_end": 17122,
+      "character_count": 3450
+    },
+    {
+      "unit_id": "py311-09-u06",
+      "source_path": "data/python_tutorial/classes.txt",
+      "chapter": "09_classes",
+      "sequence_in_chapter": 6,
+      "normalized_start": 17124,
+      "normalized_end": 20620,
+      "character_count": 3496
+    },
+    {
+      "unit_id": "py311-09-u07",
+      "source_path": "data/python_tutorial/classes.txt",
+      "chapter": "09_classes",
+      "sequence_in_chapter": 7,
+      "normalized_start": 20622,
+      "normalized_end": 24048,
+      "character_count": 3426
+    },
+    {
+      "unit_id": "py311-09-u08",
+      "source_path": "data/python_tutorial/classes.txt",
+      "chapter": "09_classes",
+      "sequence_in_chapter": 8,
+      "normalized_start": 24050,
+      "normalized_end": 27464,
+      "character_count": 3414
+    },
+    {
+      "unit_id": "py311-09-u09",
+      "source_path": "data/python_tutorial/classes.txt",
+      "chapter": "09_classes",
+      "sequence_in_chapter": 9,
+      "normalized_start": 27466,
+      "normalized_end": 30858,
+      "character_count": 3392
+    },
+    {
+      "unit_id": "py311-09-u10",
+      "source_path": "data/python_tutorial/classes.txt",
+      "chapter": "09_classes",
+      "sequence_in_chapter": 10,
+      "normalized_start": 30860,
+      "normalized_end": 34125,
+      "character_count": 3265
+    },
+    {
+      "unit_id": "py311-10-u01",
+      "source_path": "data/python_tutorial/stdlib.txt",
+      "chapter": "10_standard_library",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 3486,
+      "character_count": 3486
+    },
+    {
+      "unit_id": "py311-10-u02",
+      "source_path": "data/python_tutorial/stdlib.txt",
+      "chapter": "10_standard_library",
+      "sequence_in_chapter": 2,
+      "normalized_start": 3488,
+      "normalized_end": 6805,
+      "character_count": 3317
+    },
+    {
+      "unit_id": "py311-10-u03",
+      "source_path": "data/python_tutorial/stdlib.txt",
+      "chapter": "10_standard_library",
+      "sequence_in_chapter": 3,
+      "normalized_start": 6807,
+      "normalized_end": 10232,
+      "character_count": 3425
+    },
+    {
+      "unit_id": "py311-11-u01",
+      "source_path": "data/python_tutorial/stdlib2.txt",
+      "chapter": "11_standard_library_part_2",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 3354,
+      "character_count": 3354
+    },
+    {
+      "unit_id": "py311-11-u02",
+      "source_path": "data/python_tutorial/stdlib2.txt",
+      "chapter": "11_standard_library_part_2",
+      "sequence_in_chapter": 2,
+      "normalized_start": 3356,
+      "normalized_end": 6718,
+      "character_count": 3362
+    },
+    {
+      "unit_id": "py311-11-u03",
+      "source_path": "data/python_tutorial/stdlib2.txt",
+      "chapter": "11_standard_library_part_2",
+      "sequence_in_chapter": 3,
+      "normalized_start": 6720,
+      "normalized_end": 9964,
+      "character_count": 3244
+    },
+    {
+      "unit_id": "py311-11-u04",
+      "source_path": "data/python_tutorial/stdlib2.txt",
+      "chapter": "11_standard_library_part_2",
+      "sequence_in_chapter": 4,
+      "normalized_start": 9966,
+      "normalized_end": 13620,
+      "character_count": 3654
+    },
+    {
+      "unit_id": "py311-12-u01",
+      "source_path": "data/python_tutorial/venv.txt",
+      "chapter": "12_virtual_environments",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 3418,
+      "character_count": 3418
+    },
+    {
+      "unit_id": "py311-12-u02",
+      "source_path": "data/python_tutorial/venv.txt",
+      "chapter": "12_virtual_environments",
+      "sequence_in_chapter": 2,
+      "normalized_start": 3420,
+      "normalized_end": 6884,
+      "character_count": 3464
+    },
+    {
+      "unit_id": "py311-13-u01",
+      "source_path": "data/python_tutorial/whatnow.txt",
+      "chapter": "13_what_now",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 3097,
+      "character_count": 3097
+    },
+    {
+      "unit_id": "py311-14-u01",
+      "source_path": "data/python_tutorial/interactive.txt",
+      "chapter": "14_interactive_input_editing",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 2108,
+      "character_count": 2108
+    },
+    {
+      "unit_id": "py311-15-u01",
+      "source_path": "data/python_tutorial/floatingpoint.txt",
+      "chapter": "15_floating_point_arithmetic",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 3196,
+      "character_count": 3196
+    },
+    {
+      "unit_id": "py311-15-u02",
+      "source_path": "data/python_tutorial/floatingpoint.txt",
+      "chapter": "15_floating_point_arithmetic",
+      "sequence_in_chapter": 2,
+      "normalized_start": 3198,
+      "normalized_end": 6656,
+      "character_count": 3458
+    },
+    {
+      "unit_id": "py311-15-u03",
+      "source_path": "data/python_tutorial/floatingpoint.txt",
+      "chapter": "15_floating_point_arithmetic",
+      "sequence_in_chapter": 3,
+      "normalized_start": 6658,
+      "normalized_end": 10853,
+      "character_count": 4195
+    },
+    {
+      "unit_id": "py311-16-u01",
+      "source_path": "data/python_tutorial/appendix.txt",
+      "chapter": "16_appendix",
+      "sequence_in_chapter": 1,
+      "normalized_start": 0,
+      "normalized_end": 4332,
+      "character_count": 4332
+    }
+  ]
+}

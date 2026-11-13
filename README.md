@@ -2,6 +2,46 @@
 
 **Lab cá nhân** · **4 giờ** · **Dữ liệu tự chọn**
 
+## Trạng thái triển khai của bài làm
+
+CP0 sử dụng corpus **The Python Tutorial — Python 3.11.18 documentation** từ
+Python Software Foundation. Corpus plain-text được lưu tại
+`data/python_tutorial/`; `data/manifest.json` ghi nguồn, giấy phép, checksum,
+ranh giới 68 đơn vị nội dung và số ký tự kiểm chứng được. `index.txt` và
+`LICENSE.txt` được giữ để truy vết nhưng không tính vào quy mô corpus. Trường
+metadata dùng cho filter là `chapter`, lấy trực tiếp từ ranh giới chương/file
+chính thức (16 giá trị phân biệt).
+
+Kiến trúc đã chốt cho các phase sau:
+
+- embedding thật chạy local:
+  `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` (384 chiều,
+  cosine); không cần API key và không gửi corpus tới provider;
+- vector store: PostgreSQL 16 + pgvector 0.8.7 bằng Docker, lưu bền vững trong
+  named volume của Compose;
+- Python 3.11; máy cần Docker, mạng cho lần tải image/dependency/model đầu,
+  và nên có tối thiểu khoảng 4 GB RAM trống khi tải/chạy model.
+
+Thiết lập và kiểm tra CP0 trên Windows PowerShell:
+
+```powershell
+cd starter
+py -3.11 -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+Copy-Item .env.example .env
+docker compose -p day6_student_starter up -d --wait
+.venv\Scripts\python scripts/check_setup.py
+cd ..
+starter\.venv\Scripts\python starter\scripts\build_manifest.py
+```
+
+Hai lệnh kiểm tra cuối phải lần lượt in `Setup OK` và `Manifest OK`. Script
+manifest tái tính checksum, chuẩn hóa Unicode/whitespace và từ chối corpus có
+dưới 30 đơn vị hoặc đơn vị ngắn hơn 1.500 ký tự. Không commit `.env`, `.venv`,
+cache model hay dữ liệu PostgreSQL. Nguồn và điều khoản sử dụng chính thức:
+[Python Tutorial](https://docs.python.org/3.11/tutorial/) và
+[PSF License](https://docs.python.org/3.11/license.html).
+
 Biến tài liệu thành kho tri thức có thể truy xuất cho AI agent, rồi đo xem cách chuẩn bị dữ liệu nào hiệu quả nhất.
 
 | 📄 Dữ liệu | 🧩 Chiến lược | 🎯 Benchmark |
