@@ -12,7 +12,7 @@ ranh giới 68 đơn vị nội dung và số ký tự kiểm chứng được. 
 metadata dùng cho filter là `chapter`, lấy trực tiếp từ ranh giới chương/file
 chính thức (16 giá trị phân biệt).
 
-Kiến trúc đã chốt cho các phase sau:
+Triển khai hoàn chỉnh sử dụng:
 
 - embedding thật chạy local:
   `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` (384 chiều,
@@ -22,7 +22,7 @@ Kiến trúc đã chốt cho các phase sau:
 - Python 3.11; máy cần Docker, mạng cho lần tải image/dependency/model đầu,
   và nên có tối thiểu khoảng 4 GB RAM trống khi tải/chạy model.
 
-Thiết lập và kiểm tra CP0 trên Windows PowerShell:
+Thiết lập trên Windows PowerShell:
 
 ```powershell
 cd starter
@@ -42,6 +42,60 @@ cache model hay dữ liệu PostgreSQL. Nguồn và điều khoản sử dụng 
 [Python Tutorial](https://docs.python.org/3.11/tutorial/) và
 [PSF License](https://docs.python.org/3.11/license.html).
 
+## Chạy pipeline và kiểm tra kết quả
+
+Các lệnh dưới đây chạy từ thư mục gốc repository. Model được tải từ Hugging
+Face trong lần chạy đầu và được cache ngoài repository.
+
+```powershell
+# Kiểm tra corpus, benchmark và unit tests
+starter\.venv\Scripts\python starter\scripts\build_manifest.py
+starter\.venv\Scripts\python starter\scripts\validate_benchmark.py
+starter\.venv\Scripts\python -m unittest discover -s tests -v
+
+# Tái tạo chunks A/B và artifacts CP2
+starter\.venv\Scripts\python starter\scripts\prepare_chunks.py
+
+# Embedding thật, pgvector và Dev-only smoke test CP3
+Push-Location starter
+.\.venv\Scripts\python -m src.run
+Pop-Location
+
+# Xác minh artifacts CP4 đã được đóng băng
+starter\.venv\Scripts\python starter\scripts\validate_cp4.py
+```
+
+`run_benchmark.py` được thiết kế theo ba stage `dev → freeze → test`. Test đã
+được chạy đúng một lần và `results/.test_completed` ngăn chạy lại. Không chạy
+lại stage Test hoặc chỉnh chiến lược theo kết quả Test hiện có.
+
+## Cấu hình và kết quả chính
+
+| Strategy | Chunking | Filter | Dev Hit@1 | Dev Evidence Hit@3 | Test Hit@1 | Test Evidence Hit@3 |
+|---|---|---|---:|---:|---:|---:|
+| A | Fixed 500, overlap 50 | Không | 3/15 | 7/15 | 0/5 | 0/5 |
+| B | Paragraph-aware, max 1.000 | Không | 7/15 | 9/15 | 1/5 | 2/5 |
+| C | Giống B, dùng chung index | `chapter` khi khai báo | 7/15 | 9/15 | 1/5 | 3/5 |
+
+Strategy **B** được chọn và freeze trên Dev trước khi xem Test. C đạt Test
+Evidence Hit@3 cao hơn nhưng không được dùng để thay đổi lựa chọn. Embedding và
+ingestion A+B mất 26,385 giây trong lần đo được lưu, chi phí API là 0 USD.
+
+Artifacts quan trọng:
+
+- corpus và quyền: [`data/manifest.json`](data/manifest.json);
+- benchmark/split: [`benchmark/questions.json`](benchmark/questions.json) và
+  [`benchmark/split_manifest.json`](benchmark/split_manifest.json);
+- trace A/B/C Dev/Test: [`results/traces/`](results/traces/);
+- metric: [`results/retrieval_metrics.csv`](results/retrieval_metrics.csv);
+- manual audits: [`results/coherence_audit.csv`](results/coherence_audit.csv),
+  [`results/metadata_audit.csv`](results/metadata_audit.csv),
+  [`results/grounding_audit.csv`](results/grounding_audit.csv);
+- freeze và phân tích: [`results/strategy_freeze.json`](results/strategy_freeze.json)
+  và [`results/strategy_comparison.md`](results/strategy_comparison.md);
+- báo cáo cá nhân:
+  [`report/individual/2A202603999_LeKhanhCuong.md`](report/individual/2A202603999_LeKhanhCuong.md).
+
 Biến tài liệu thành kho tri thức có thể truy xuất cho AI agent, rồi đo xem cách chuẩn bị dữ liệu nào hiệu quả nhất.
 
 | 📄 Dữ liệu | 🧩 Chiến lược | 🎯 Benchmark |
@@ -50,7 +104,7 @@ Biến tài liệu thành kho tri thức có thể truy xuất cho AI agent, r�
 
 ## Bắt đầu nhanh
 
-Dùng [starter PostgreSQL + pgvector](starter/README.md) để dựng database và hoàn thiện các hàm TODO, hoặc tự chọn vector store tương đương. Starter chỉ là khung: **bạn tự hiện thực pipeline và benchmark**.
+Bài làm đã hoàn thiện pipeline trong [`starter/src/`](starter/src/) với PostgreSQL + pgvector. Xem [starter/README](starter/README.md) để dựng database và chạy lại.
 
 ## 1. Xây pipeline
 

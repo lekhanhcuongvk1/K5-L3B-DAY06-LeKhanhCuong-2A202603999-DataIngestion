@@ -127,7 +127,8 @@ def main() -> None:
         "review_method": (
             "Metadata was cross-checked against persisted chunk artifacts. Grounding was manually "
             "reviewed from the same five Test top-3 traces per strategy; labels assess retrieval "
-            "evidence, not LLM answer accuracy. Reviewer is the author with Codex assistance."
+            "evidence, not LLM answer accuracy. Labels were reviewed by Codex with author "
+            "confirmation recommended before submission."
         ),
         "limitations": "Single reviewer and five-question Test set may introduce subjective and sampling bias.",
     }
