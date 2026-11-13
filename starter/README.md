@@ -2,9 +2,10 @@
 
 Bài làm sử dụng Docker Compose để chạy PostgreSQL + pgvector local. Trên nhánh
 `experiment/vietnamese-corpus`, CP0 đã khóa corpus Wikipedia tiếng Việt và
-model ứng viên `bkai-foundation-models/vietnamese-bi-encoder`; benchmark,
-chunk artifacts và kết quả A/B/C sẽ được tạo lại ở CP1–CP4. Không sử dụng các
-kết quả của corpus tiếng Anh trong lịch sử Git như kết quả cho nhánh này.
+model ứng viên `bkai-foundation-models/vietnamese-bi-encoder`. CP1 đã khóa
+benchmark mới; CP2 đã tạo 759 chunks A và 418 chunks B với metadata
+`collection`. Embedding/index và kết quả A/B/C sẽ được tạo ở CP3–CP4. Không sử
+dụng các kết quả corpus tiếng Anh trong lịch sử Git cho nhánh này.
 
 ## Cấu trúc
 

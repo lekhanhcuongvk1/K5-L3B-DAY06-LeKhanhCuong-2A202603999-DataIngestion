@@ -1,0 +1,55 @@
+{
+  "corpus": {
+    "corpus_id": "vi-wikipedia-computing-snapshot-2026-11-13",
+    "document_count": 30,
+    "valid_unit_count": 30,
+    "processing_error_count": 0,
+    "normalized_source_characters": 334955,
+    "location_type": "content_unit",
+    "page": null
+  },
+  "strategy_A": {
+    "chunking": "fixed_size",
+    "size": 500,
+    "overlap": 50,
+    "chunk_count": 759,
+    "chunk_character_count_including_overlap": 371405,
+    "minimum_chunk_characters": 51,
+    "maximum_chunk_characters": 500,
+    "mean_chunk_characters": 489.33,
+    "median_chunk_characters": 500,
+    "p95_chunk_characters": 500
+  },
+  "strategy_B": {
+    "chunking": "paragraph_aware",
+    "max_size": 1000,
+    "overlap": 0,
+    "chunk_count": 418,
+    "chunk_character_count_including_overlap": 334955,
+    "minimum_chunk_characters": 71,
+    "maximum_chunk_characters": 1000,
+    "mean_chunk_characters": 801.33,
+    "median_chunk_characters": 861.0,
+    "p95_chunk_characters": 999
+  },
+  "metadata_fields": [
+    "document_id",
+    "source",
+    "page",
+    "unit_id",
+    "collection",
+    "version",
+    "title",
+    "canonical_url",
+    "sequence_in_source",
+    "char_start",
+    "char_end"
+  ],
+  "filter_metadata_field": "collection",
+  "coverage_check": {
+    "strategy_A_all_units_present": true,
+    "strategy_B_all_units_present": true,
+    "strategy_A_document_count": 30,
+    "strategy_B_document_count": 30
+  }
+}

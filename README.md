@@ -27,9 +27,14 @@ CP1 đã khóa benchmark tiếng Việt gồm 20 câu từ 20 bài khác nhau: 1
 Test, 5 câu có `collection` filter (2 Test), 20/20 evidence được validator xác
 minh và 10 vị trí coherence được chọn trước retrieval. Xem
 [`benchmark/questions.json`](benchmark/questions.json) và
-[`benchmark/split_manifest.json`](benchmark/split_manifest.json). CP2–CP5 của
-thí nghiệm tiếng Việt chưa chạy. Kết quả tiếng Anh cũ được giữ trong lịch sử
-Git tại commit `7c311d6`, không được trình bày như kết quả của corpus mới.
+[`benchmark/split_manifest.json`](benchmark/split_manifest.json).
+
+CP2 đã xử lý đủ 30 đơn vị với 0 lỗi và tạo hai artifacts có truy vết: A fixed
+500 ký tự/overlap 50 có 759 chunks; B paragraph-aware tối đa 1.000 ký tự/không
+overlap có 418 chunks. Toàn bộ span, metadata, coverage và ID ổn định đã được
+[`validate_cp2.py`](starter/scripts/validate_cp2.py) kiểm tra; chạy lại tạo
+artifacts byte-identical. CP3–CP5 chưa chạy. Kết quả tiếng Anh cũ được giữ trong
+lịch sử Git tại commit `7c311d6`, không được trình bày như kết quả corpus mới.
 
 ## Xác minh CP0
 
@@ -45,6 +50,9 @@ docker compose -p day6_student_starter up -d --wait
 cd ..
 
 python starter/scripts/build_manifest.py
+python starter/scripts/validate_benchmark.py
+python starter/scripts/prepare_chunks.py
+python starter/scripts/validate_cp2.py
 $env:PYTHONPATH = (Resolve-Path '.\starter\.venv\Lib\site-packages').Path
 python -m unittest discover -s tests -v
 ```

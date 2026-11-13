@@ -51,6 +51,8 @@ def write_jsonl(path: Path, records: list[object]) -> None:
 
 
 def main() -> None:
+    manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    filter_field = manifest["filter_metadata"]["field"]
     units, errors = load_text_manifest(MANIFEST_PATH)
     if errors:
         RESULTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -69,7 +71,8 @@ def main() -> None:
     source_characters = sum(len(unit.text) for unit in units)
     stats = {
         "corpus": {
-            "document_id": units[0].document_id,
+            "corpus_id": manifest["source"]["source_id"],
+            "document_count": len({unit.document_id for unit in units}),
             "valid_unit_count": len(units),
             "processing_error_count": len(errors),
             "normalized_source_characters": source_characters,
@@ -89,12 +92,15 @@ def main() -> None:
             **chunk_statistics(chunks_b),
         },
         "metadata_fields": [
-            "document_id", "source", "page", "unit_id", "chapter", "version",
-            "sequence_in_chapter", "char_start", "char_end",
+            "document_id", "source", "page", "unit_id", filter_field, "version",
+            "title", "canonical_url", "sequence_in_source", "char_start", "char_end",
         ],
+        "filter_metadata_field": filter_field,
         "coverage_check": {
             "strategy_A_all_units_present": len({chunk.unit_id for chunk in chunks_a}) == len(units),
             "strategy_B_all_units_present": len({chunk.unit_id for chunk in chunks_b}) == len(units),
+            "strategy_A_document_count": len({chunk.document_id for chunk in chunks_a}),
+            "strategy_B_document_count": len({chunk.document_id for chunk in chunks_b}),
         },
     }
     (RESULTS_DIR / "chunk_stats.json").write_text(
