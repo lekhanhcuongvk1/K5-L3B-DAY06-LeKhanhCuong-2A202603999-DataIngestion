@@ -1,4 +1,4 @@
-"""Shared data contracts; keep traceability from chunk back to source."""
+"""Shared data contracts with traceability from chunks to source units."""
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -7,7 +7,9 @@ from typing import Any
 class DocumentPage:
     document_id: str
     source: str
-    page: int
+    page: int | None
+    unit_id: str
+    sequence: int
     text: str
     metadata: dict[str, Any] = field(default_factory=dict)
 
@@ -17,6 +19,10 @@ class Chunk:
     chunk_id: str
     document_id: str
     source: str
-    page: int
+    page: int | None
+    unit_id: str
+    sequence: int
+    char_start: int
+    char_end: int
     text: str
     metadata: dict[str, Any] = field(default_factory=dict)

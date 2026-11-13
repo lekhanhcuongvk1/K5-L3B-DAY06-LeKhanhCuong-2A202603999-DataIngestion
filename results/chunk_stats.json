@@ -1,0 +1,49 @@
+{
+  "corpus": {
+    "document_id": "python-tutorial-3.11.18",
+    "valid_unit_count": 68,
+    "processing_error_count": 0,
+    "normalized_source_characters": 231959,
+    "location_type": "content_unit",
+    "page": null
+  },
+  "strategy_A": {
+    "chunking": "fixed_size",
+    "size": 500,
+    "overlap": 50,
+    "chunk_count": 543,
+    "chunk_character_count_including_overlap": 255709,
+    "minimum_chunk_characters": 54,
+    "maximum_chunk_characters": 500,
+    "mean_chunk_characters": 470.92,
+    "median_chunk_characters": 500,
+    "p95_chunk_characters": 500
+  },
+  "strategy_B": {
+    "chunking": "paragraph_aware",
+    "max_size": 1000,
+    "overlap": 0,
+    "chunk_count": 289,
+    "chunk_character_count_including_overlap": 231959,
+    "minimum_chunk_characters": 15,
+    "maximum_chunk_characters": 1000,
+    "mean_chunk_characters": 802.63,
+    "median_chunk_characters": 859,
+    "p95_chunk_characters": 993
+  },
+  "metadata_fields": [
+    "document_id",
+    "source",
+    "page",
+    "unit_id",
+    "chapter",
+    "version",
+    "sequence_in_chapter",
+    "char_start",
+    "char_end"
+  ],
+  "coverage_check": {
+    "strategy_A_all_units_present": true,
+    "strategy_B_all_units_present": true
+  }
+}
