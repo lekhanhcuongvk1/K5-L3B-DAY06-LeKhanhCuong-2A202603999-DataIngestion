@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "python-tutorial-3.11.18-gold-v1",
+  "frozen_at": "2026-11-13T16:20:00+07:00",
+  "freeze_stage": "before any retrieval experiment",
+  "split_method": "Manual stratification by topic and question type; exactly 15 Dev and 5 Test questions selected before retrieval.",
+  "dev_question_ids": [
+    "Q01",
+    "Q02",
+    "Q03",
+    "Q05",
+    "Q06",
+    "Q07",
+    "Q08",
+    "Q09",
+    "Q11",
+    "Q12",
+    "Q13",
+    "Q15",
+    "Q17",
+    "Q19",
+    "Q20"
+  ],
+  "test_question_ids": [
+    "Q04",
+    "Q10",
+    "Q14",
+    "Q16",
+    "Q18"
+  ],
+  "test_access_policy": "Do not inspect retrieval results for Test until A/B/C have been evaluated on Dev, the selection rule has been applied, and the winning configuration has been frozen.",
+  "strategy_selection_rule": [
+    "Maximize Dev Evidence Hit@3 using the official full-evidence definition.",
+    "If tied, prefer higher mean manual coherence on the ten preselected source positions.",
+    "If still tied, prefer lower measured ingestion time, storage footprint, and operational complexity."
+  ],
+  "filter_policy": "Apply a chapter filter only when the question explicitly names that chapter; never derive a filter from gold source or unit metadata.",
+  "coherence_positions": [
+    {
+      "position_id": "C01",
+      "unit_id": "py311-01-u01",
+      "anchor": "unit_start"
+    },
+    {
+      "position_id": "C02",
+      "unit_id": "py311-02-u01",
+      "anchor": "unit_start"
+    },
+    {
+      "position_id": "C03",
+      "unit_id": "py311-03-u01",
+      "anchor": "unit_start"
+    },
+    {
+      "position_id": "C04",
+      "unit_id": "py311-04-u01",
+      "anchor": "unit_start"
+    },
+    {
+      "position_id": "C05",
+      "unit_id": "py311-05-u01",
+      "anchor": "unit_start"
+    },
+    {
+      "position_id": "C06",
+      "unit_id": "py311-06-u01",
+      "anchor": "unit_start"
+    },
+    {
+      "position_id": "C07",
+      "unit_id": "py311-07-u01",
+      "anchor": "unit_start"
+    },
+    {
+      "position_id": "C08",
+      "unit_id": "py311-08-u01",
+      "anchor": "unit_start"
+    },
+    {
+      "position_id": "C09",
+      "unit_id": "py311-09-u01",
+      "anchor": "unit_start"
+    },
+    {
+      "position_id": "C10",
+      "unit_id": "py311-10-u01",
+      "anchor": "unit_start"
+    }
+  ],
+  "questions_sha256": "89c5d8251006121cfa252c6753d151fc2a8bb51a865b4054e3172a3870ef3e8a",
+  "corpus_manifest_sha256": "08d6919ac40d6b412420eae5a511cfa898f08ee0645232d0f64ea878583e38d0"
+}

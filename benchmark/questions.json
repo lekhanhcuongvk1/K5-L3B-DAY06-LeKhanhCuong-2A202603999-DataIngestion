@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "python-tutorial-3.11.18-gold-v1",
+  "created_at": "2026-11-13T16:20:00+07:00",
+  "source_id": "python-tutorial-3.11.18",
+  "questions": [
+    {
+      "id": "Q01", "split": "dev", "type": "direct",
+      "question": "Điểm dừng truyền cho range() có được đưa vào dãy kết quả không?",
+      "expected_answer": "Không. Điểm dừng không thuộc dãy được tạo.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/controlflow.txt",
+      "gold_page": null, "gold_unit_id": "py311-04-u01",
+      "evidence_quote": "The given end point is never part of the generated sequence; range(10) generates 10 values, the legal indices for items of a sequence of length 10.",
+      "filter": null
+    },
+    {
+      "id": "Q02", "split": "dev", "type": "metadata_disambiguation",
+      "question": "Trong chương Control Flow, keyword arguments phải nằm ở đâu so với positional arguments khi gọi hàm?",
+      "expected_answer": "Keyword arguments phải đứng sau positional arguments.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/controlflow.txt",
+      "gold_page": null, "gold_unit_id": "py311-04-u06",
+      "evidence_quote": "In a function call, keyword arguments must follow positional arguments.",
+      "filter": {"chapter": "04_control_flow"}
+    },
+    {
+      "id": "Q03", "split": "dev", "type": "conditional",
+      "question": "Default argument của hàm được đánh giá ở thời điểm định nghĩa hàm hay mỗi lần gọi?",
+      "expected_answer": "Nó được đánh giá tại thời điểm định nghĩa hàm, trong defining scope.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/controlflow.txt",
+      "gold_page": null, "gold_unit_id": "py311-04-u06",
+      "evidence_quote": "The default values are evaluated at the point of function definition in the defining scope",
+      "filter": null
+    },
+    {
+      "id": "Q04", "split": "test", "type": "paraphrase",
+      "question": "Cấu trúc nào được tài liệu khuyên dùng để làm hàng đợi có thao tác thêm và lấy nhanh ở cả hai đầu?",
+      "expected_answer": "collections.deque.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/datastructures.txt",
+      "gold_page": null, "gold_unit_id": "py311-05-u02",
+      "evidence_quote": "To implement a queue, use collections.deque which was designed to have fast appends and pops from both ends.",
+      "filter": null
+    },
+    {
+      "id": "Q05", "split": "dev", "type": "direct",
+      "question": "Một list comprehension gồm những thành phần cú pháp chính nào?",
+      "expected_answer": "Một biểu thức trong ngoặc vuông, theo sau bởi một mệnh đề for và có thể có thêm các mệnh đề for hoặc if.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/datastructures.txt",
+      "gold_page": null, "gold_unit_id": "py311-05-u02",
+      "evidence_quote": "A list comprehension consists of brackets containing an expression followed by a for clause, then zero or more for or if clauses.",
+      "filter": null
+    },
+    {
+      "id": "Q06", "split": "dev", "type": "conditional",
+      "question": "Để tạo tuple chỉ có một phần tử, đặt giá trị trong ngoặc đơn đã đủ chưa?",
+      "expected_answer": "Chưa đủ; phải có dấu phẩy theo sau giá trị.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/datastructures.txt",
+      "gold_page": null, "gold_unit_id": "py311-05-u04",
+      "evidence_quote": "a tuple with one item is constructed by following a value with a comma (it is not sufficient to enclose a single value in parentheses).",
+      "filter": null
+    },
+    {
+      "id": "Q07", "split": "dev", "type": "direct",
+      "question": "Các key bên trong cùng một dictionary phải thỏa mãn điều kiện gì?",
+      "expected_answer": "Các key phải duy nhất trong dictionary đó.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/datastructures.txt",
+      "gold_page": null, "gold_unit_id": "py311-05-u05",
+      "evidence_quote": "It is best to think of a dictionary as a set of key: value pairs, with the requirement that the keys are unique (within one dictionary).",
+      "filter": null
+    },
+    {
+      "id": "Q08", "split": "dev", "type": "metadata_disambiguation",
+      "question": "Trong chương Modules, các executable statements dùng để khởi tạo module được chạy khi nào trong quá trình import?",
+      "expected_answer": "Chúng chỉ chạy lần đầu tên module xuất hiện trong một import statement.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/modules.txt",
+      "gold_page": null, "gold_unit_id": "py311-06-u01",
+      "evidence_quote": "These statements are intended to initialize the module. They are executed only the first time the module name is encountered in an import statement.",
+      "filter": {"chapter": "06_modules"}
+    },
+    {
+      "id": "Q09", "split": "dev", "type": "paraphrase",
+      "question": "Giá trị của __name__ là gì khi mã trong module được chạy như một script?",
+      "expected_answer": "__main__.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/modules.txt",
+      "gold_page": null, "gold_unit_id": "py311-06-u02",
+      "evidence_quote": "the code in the module will be executed, just as if you imported it, but with the __name__ set to __main__.",
+      "filter": null
+    },
+    {
+      "id": "Q10", "split": "test", "type": "conditional",
+      "question": "Vì sao nên đặt phần mã chỉ chạy khi không có exception vào else của try thay vì nối thêm vào try?",
+      "expected_answer": "Để tránh vô tình bắt một exception không phát sinh từ phần mã mà try dự định bảo vệ.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/errors.txt",
+      "gold_page": null, "gold_unit_id": "py311-08-u03",
+      "evidence_quote": "The use of the else clause is better than adding additional code to the try clause because it avoids accidentally catching an exception that wasn't raised by the code being protected by the try ... except statement.",
+      "filter": null
+    },
+    {
+      "id": "Q11", "split": "dev", "type": "direct",
+      "question": "Finally clause có chạy khi try statement không tạo ra exception không?",
+      "expected_answer": "Có. Finally chạy dù try có tạo exception hay không.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/errors.txt",
+      "gold_page": null, "gold_unit_id": "py311-08-u04",
+      "evidence_quote": "The finally clause runs whether or not the try statement produces an exception.",
+      "filter": null
+    },
+    {
+      "id": "Q12", "split": "dev", "type": "paraphrase",
+      "question": "Theo quy ước Python, tên bắt đầu bằng một dấu gạch dưới như _spam nên được hiểu thế nào?",
+      "expected_answer": "Đó là phần không công khai của API, một chi tiết triển khai có thể thay đổi.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/classes.txt",
+      "gold_page": null, "gold_unit_id": "py311-09-u08",
+      "evidence_quote": "a name prefixed with an underscore (e.g. _spam) should be treated as a non-public part of the API (whether it is a function, a method or a data member).",
+      "filter": null
+    },
+    {
+      "id": "Q13", "split": "dev", "type": "direct",
+      "question": "Hai method giao thức iterator nào được tự động tạo cho generator?",
+      "expected_answer": "__iter__() và __next__().",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/classes.txt",
+      "gold_page": null, "gold_unit_id": "py311-09-u10",
+      "evidence_quote": "What makes generators so compact is that the __iter__() and __next__() methods are created automatically.",
+      "filter": null
+    },
+    {
+      "id": "Q14", "split": "test", "type": "conditional",
+      "question": "Dùng with khi làm việc với file object đảm bảo điều gì nếu exception xảy ra trong suite?",
+      "expected_answer": "File vẫn được đóng đúng cách sau khi suite kết thúc.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/inputoutput.txt",
+      "gold_page": null, "gold_unit_id": "py311-07-u04",
+      "evidence_quote": "The advantage is that the file is properly closed after its suite finishes, even if an exception is raised at some point.",
+      "filter": null
+    },
+    {
+      "id": "Q15", "split": "dev", "type": "direct",
+      "question": "Tài liệu yêu cầu file JSON sử dụng encoding nào?",
+      "expected_answer": "UTF-8.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/inputoutput.txt",
+      "gold_page": null, "gold_unit_id": "py311-07-u05",
+      "evidence_quote": "JSON files must be encoded in UTF-8.",
+      "filter": null
+    },
+    {
+      "id": "Q16", "split": "test", "type": "metadata_disambiguation",
+      "question": "Trong chương Virtual Environments, virtual environment chứa những gì để cô lập dependency cho một ứng dụng?",
+      "expected_answer": "Một cây thư mục tự chứa gồm Python installation cho một phiên bản cụ thể và các package bổ sung.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/venv.txt",
+      "gold_page": null, "gold_unit_id": "py311-12-u01",
+      "evidence_quote": "a virtual environment, a self-contained directory tree that contains a Python installation for a particular version of Python, plus a number of additional packages.",
+      "filter": {"chapter": "12_virtual_environments"}
+    },
+    {
+      "id": "Q17", "split": "dev", "type": "direct",
+      "question": "Theo convention trong tài liệu, output của python -m pip freeze thường được lưu vào file nào?",
+      "expected_answer": "requirements.txt.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/venv.txt",
+      "gold_page": null, "gold_unit_id": "py311-12-u02",
+      "evidence_quote": "A common convention is to put this list in a requirements.txt file",
+      "filter": null
+    },
+    {
+      "id": "Q18", "split": "test", "type": "metadata_disambiguation",
+      "question": "Trong chương Floating Point Arithmetic, module nào được đề xuất khi cần biểu diễn số thập phân chính xác cho kế toán?",
+      "expected_answer": "decimal.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/floatingpoint.txt",
+      "gold_page": null, "gold_unit_id": "py311-15-u02",
+      "evidence_quote": "For use cases which require exact decimal representation, try using the decimal module which implements decimal arithmetic suitable for accounting applications and high-precision applications.",
+      "filter": {"chapter": "15_floating_point_arithmetic"}
+    },
+    {
+      "id": "Q19", "split": "dev", "type": "paraphrase",
+      "question": "math.fsum() cải thiện độ chính xác phép cộng số thực bằng cách theo dõi điều gì?",
+      "expected_answer": "Nó theo dõi các chữ số bị mất khi cộng dồn để giảm mất mát độ chính xác.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/floatingpoint.txt",
+      "gold_page": null, "gold_unit_id": "py311-15-u03",
+      "evidence_quote": "Another helpful tool is the math.fsum() function which helps mitigate loss-of-precision during summation. It tracks lost digits as values are added onto a running total.",
+      "filter": null
+    },
+    {
+      "id": "Q20", "split": "dev", "type": "conditional",
+      "question": "Nếu gán một list cho biến khác rồi sửa list qua một biến, biến còn lại có thấy thay đổi không, và vì sao?",
+      "expected_answer": "Có, vì phép gán đơn giản không sao chép dữ liệu; cả hai biến tham chiếu cùng list hiện có.",
+      "gold_source_id": "python-tutorial-3.11.18", "gold_source_path": "data/python_tutorial/introduction.txt",
+      "gold_page": null, "gold_unit_id": "py311-03-u04",
+      "evidence_quote": "Simple assignment in Python never copies data. When you assign a list to a variable, the variable refers to the existing list. Any changes you make to the list through one variable will be seen through all other variables that refer to it.",
+      "filter": null
+    }
+  ]
+}
