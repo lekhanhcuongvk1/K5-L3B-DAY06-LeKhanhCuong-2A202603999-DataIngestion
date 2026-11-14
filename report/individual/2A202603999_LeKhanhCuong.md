@@ -41,7 +41,7 @@ python starter/scripts/validate_submission.py
 
 ## Kết quả
 
-Thời gian dưới đây là mean retrieval/query; embedding A+B được đo chung 152,737 giây nên không cộng lặp vào từng hàng. Tất cả cấu hình có chi phí API 0 USD.
+Thời gian dưới đây là thời gian truy xuất trung bình cho mỗi câu hỏi. Embedding A+B được đo chung trong 152,737 giây nên tôi không cộng lặp con số này vào từng hàng. Cả ba cấu hình đều có chi phí API 0 USD.
 
 | Strategy | Split | Hit@1 (n/N) | Evidence Hit@3 (n/N) | Chunk count | Thời gian | Chi phí |
 |---|---|---|---|---:|---:|---:|
@@ -56,16 +56,18 @@ Thời gian dưới đây là mean retrieval/query; embedding A+B được đo c
 |---|---:|---:|---:|---:|
 | A | 1,2 (10) | 15/15 | N/A | 0/0/5, 2,0/2 |
 | B | 1,8 (10) | 15/15 | N/A | 0/0/5, 2,0/2 |
-| C | 1,8 (10) | 15/15 | 6/6 top-3 records của 2 câu Test có filter | 0/0/5, 2,0/2 |
+| C | 1,8 (10) | 15/15 | 2/2 câu (6/6 kết quả top-3) | 0/0/5, 2,0/2 |
 
-Tổng metadata là 45/45 top-3 Test records đầy đủ và đúng. Coherence dùng cùng 10 vị trí nguồn đã chọn trước retrieval. Grounding đọc toàn bộ top-3 của cùng 5 câu Test cho từng strategy, chấm độ đủ của evidence retrieval (không phải độ chính xác câu trả lời LLM). Trace: [Dev A](../../results/traces/dev_A.jsonl), [Dev B](../../results/traces/dev_B.jsonl), [Dev C](../../results/traces/dev_C.jsonl), [Test A](../../results/traces/test_A.jsonl), [Test B](../../results/traces/test_B.jsonl), [Test C](../../results/traces/test_C.jsonl). Nhãn và lý do: [coherence](../../results/coherence_audit.csv), [metadata](../../results/metadata_audit.csv), [grounding](../../results/grounding_audit.csv). Codex hỗ trợ tạo code, phân tích và gán nhãn audit; metadata được kiểm tra cơ học với chunks, còn coherence/grounding được đọc thủ công. Đây là một reviewer hỗ trợ bằng AI nên có nguy cơ thiên lệch; tác giả chịu trách nhiệm đọc, hiểu và xác nhận các nhãn trước khi nộp.
+Tổng cộng 45/45 kết quả top-3 trên Test có metadata đầy đủ và đúng. Phần coherence dùng cùng 10 vị trí nguồn đã chọn trước retrieval. Phần grounding được chấm sau khi đọc toàn bộ top-3 của cùng 5 câu Test cho từng strategy và chỉ đánh giá độ đầy đủ của bằng chứng truy xuất, không xem đây là độ chính xác của câu trả lời LLM. Trace: [Dev A](../../results/traces/dev_A.jsonl), [Dev B](../../results/traces/dev_B.jsonl), [Dev C](../../results/traces/dev_C.jsonl), [Test A](../../results/traces/test_A.jsonl), [Test B](../../results/traces/test_B.jsonl), [Test C](../../results/traces/test_C.jsonl). Nhãn và lý do được lưu riêng tại [coherence](../../results/coherence_audit.csv), [metadata](../../results/metadata_audit.csv) và [grounding](../../results/grounding_audit.csv).
+
+Tôi sử dụng Codex để hỗ trợ viết code, kiểm tra artifacts, phân tích lỗi và đề xuất nhãn audit. Metadata được đối chiếu tự động với chunks đã lưu; coherence và grounding được đọc thủ công trên nội dung top-3. Bài làm được kiểm tra lại bằng các validator từ manifest, benchmark đến CP4, submission validator và 16 unit tests. Vì phần nhãn chỉ có một lượt đánh giá với hỗ trợ AI, kết quả vẫn có nguy cơ thiên lệch; đây là một hạn chế của bài làm.
 
 ## Phân tích và kết luận
 
-- **A–B:** B tăng Dev Evidence Hit@3 từ 12/15 lên 14/15 và coherence từ 1,2 lên 1,8; giảm 341 chunks (44,9%) và mean Dev retrieval từ 38,509 xuống 29,033 ms. Đổi lại, Dev Hit@1 giảm 10/15 xuống 9/15. Test A/B bằng nhau trên chỉ 5 câu nên không đủ để tuyên bố B tốt hơn tổng quát.
-- **B–C:** chunks/vector/model/store giống nhau; C chỉ lọc collection. C tuân thủ 6/6 returned records ở hai câu Test có filter nhưng Hit@1/Hit@3 không đổi, vì nhiễu quan trọng vẫn nằm trong đúng collection. Chênh lệch latency vài ms không nên diễn giải mạnh trên một lần đo nhỏ.
+- **A–B:** B tăng Dev Evidence Hit@3 từ 12/15 lên 14/15 và coherence từ 1,2 lên 1,8; giảm 341 chunks (44,9%) và thời gian truy xuất Dev trung bình từ 38,509 xuống 29,033 ms. Đổi lại, Dev Hit@1 giảm 10/15 xuống 9/15. Test A/B bằng nhau trên chỉ 5 câu nên không đủ để tuyên bố B tốt hơn tổng quát.
+- **B–C:** chunks, vector, model và store giống nhau; C chỉ thêm filter theo collection. C tuân thủ filter ở 2/2 câu Test, tương ứng 6/6 kết quả top-3, nhưng Hit@1/Hit@3 không đổi vì nhiễu quan trọng vẫn nằm trong đúng collection. Chênh lệch vài mili giây không đủ để kết luận về tốc độ khi phép đo chỉ chạy một lần trên tập nhỏ.
 - **Q10 — nguồn gold “Hình học tính toán”:** A/B/C đều trả các đoạn tổng quan từ “Khoa học máy tính” trong top-3. Hai bài cùng collection `khoa_hoc_may_tinh`, nên filter thô không loại được nhiễu.
-- **Q18 — nguồn gold “AlphaFold”:** B/C xếp bài AlphaFold rank 1, A xếp “Cơn sốt AI” rank 1. Top-3 có bằng chứng tương đương đủ trả lời về dự đoán cấu trúc protein từ trình tự amino acid, nên grounding là 2; tuy nhiên không chunk nào chứa trọn gold quote đã khai báo, vì vậy Evidence Hit@3 chính thức vẫn là miss. **Q14** trên Dev cũng cho thấy A cắt thiếu full evidence VAE, trong khi B/C giữ đủ ở rank 2.
+- **Q18 — nguồn gold “AlphaFold”:** B/C xếp bài AlphaFold ở vị trí đầu, còn A xếp “Cơn sốt AI” ở vị trí đầu. Top-3 có bằng chứng tương đương đủ trả lời về dự đoán cấu trúc protein từ trình tự amino acid, nên grounding là 2; tuy nhiên không chunk nào chứa trọn đoạn evidence đã khai báo, vì vậy Evidence Hit@3 chính thức vẫn là miss. **Q14** trên Dev cũng cho thấy A cắt thiếu evidence về VAE, trong khi B/C giữ đủ ở vị trí thứ hai.
 - **Chọn B:** phù hợp corpus này vì ưu tiên recall top-3 và coherence, index nhỏ, truy xuất nhanh hơn và không phụ thuộc filter do người dùng cung cấp. C chỉ nên dùng khi collection đầu vào đáng tin; filter sai hoặc quá rộng có thể không giúp, còn filter sai phạm vi có thể loại evidence đúng.
 - **Giới hạn:** corpus chỉ 30 bài và hai collection; Test có 5 câu; nhãn thủ công do một reviewer hỗ trợ bằng AI; timing chạy local CPU/pgvector và không có lặp thống kê; chi phí 0 USD không phản ánh điện năng/phần cứng. Không dùng kết quả Test để sửa model, chunks, filter hoặc ranking và không suy rộng ngoài corpus.
 - **Nếu mở rộng:** tạo holdout mới lớn hơn trước mọi tuning, thêm metadata mục/tiểu mục có nguồn xác thực, lặp phép đo latency, có reviewer độc lập, và thử hybrid dense+BM25 hoặc reranker trên Dev. Các mở rộng phải giữ Test hiện tại bất biến hoặc công bố đây không còn là holdout độc lập.
