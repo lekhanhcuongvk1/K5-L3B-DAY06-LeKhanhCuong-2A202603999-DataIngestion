@@ -42,7 +42,20 @@ Evidence Hit@3 `12/15`; BKAI đạt Hit@1 `9/15`, Evidence Hit@3 `14/15`. Theo r
 chỉ thêm `collection` filter. Hai lượt upsert giữ nguyên count, 9 smoke traces
 chỉ dùng Q01/Q04/Q10 thuộc Dev và Test chưa mở. Lần chạy chính thức đo được
 159,373 giây tổng, trong đó embedding A+B là 152,737 giây; chi phí API 0 USD.
-CP4–CP5 chưa chạy. Kết quả tiếng Anh cũ được giữ trong lịch sử Git tại commit
+CP4 đã chạy A/B/C trên Dev, freeze B rồi mới chạy Test đúng một lần. Kết quả:
+
+| Strategy | Dev Hit@1 | Dev Evidence Hit@3 | Test Hit@1 | Test Evidence Hit@3 | Coherence /2 |
+|---|---:|---:|---:|---:|---:|
+| A | 10/15 | 12/15 | 3/5 | 4/5 | 1,2 |
+| B | 9/15 | **14/15** | 3/5 | 4/5 | **1,8** |
+| C | 9/15 | **14/15** | 3/5 | 4/5 | **1,8** |
+
+Metadata đúng 45/45 records; C tuân thủ filter 6/6 Test hits; grounding thủ
+công đạt 2,0/2 cho cả ba strategy. Q18 vẫn được giữ là miss theo full-quote
+metric dù top-3 có bằng chứng tương đương đủ trả lời. B được chọn trước Test vì
+Hit@3/coherence cao hơn và index nhỏ hơn A; C không tăng metric vì `collection`
+còn quá rộng. Xem [`strategy_comparison.md`](results/strategy_comparison.md).
+CP5 chưa chạy. Kết quả tiếng Anh cũ được giữ trong lịch sử Git tại commit
 `7c311d6`, không được trình bày như kết quả corpus mới.
 
 ## Xác minh CP0
@@ -67,6 +80,7 @@ Push-Location starter
 .\.venv\Scripts\python -m src.run
 Pop-Location
 starter\.venv\Scripts\python starter\scripts\validate_cp3.py
+starter\.venv\Scripts\python starter\scripts\validate_cp4.py
 $env:PYTHONPATH = (Resolve-Path '.\starter\.venv\Lib\site-packages').Path
 python -m unittest discover -s tests -v
 ```
@@ -80,7 +94,7 @@ vì revision và thành viên chuyên mục có thể thay đổi.
 - Nếu so sánh model, chỉ dùng Dev trên cùng chunks/query; khóa một model trước
   đánh giá A/B/C chính thức.
 - A–B chỉ thay chunking; B–C chỉ thay metadata filter `collection`.
-- Test chỉ chạy một lần sau khi model, strategy, benchmark và code đã freeze.
+- Test đã chạy đúng một lần sau freeze; `.test_completed` chặn chạy lại.
 - Không dùng API key; không fallback sang mock/random vector.
 
 ## Tài liệu quy định

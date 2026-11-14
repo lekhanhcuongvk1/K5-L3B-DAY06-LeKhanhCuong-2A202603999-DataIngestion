@@ -6,8 +6,9 @@ model ứng viên `bkai-foundation-models/vietnamese-bi-encoder`. CP1 đã khóa
 benchmark mới; CP2 đã tạo 759 chunks A và 418 chunks B với metadata
 `collection`. CP3 đã chọn BKAI bằng Dev-only model bake-off, tạo index
 `day06_chunks_vi` 768 chiều và xác minh A/B/C smoke, filter, persistence cùng
-idempotence. Benchmark đầy đủ và Test chỉ được chạy ở CP4. Không sử dụng các
-kết quả corpus tiếng Anh trong lịch sử Git cho nhánh này.
+idempotence. CP4 đã chọn B trên Dev, freeze rồi chạy Test đúng một lần; kết quả
+và audits nằm trong `../results/`. Không chạy lại Test hoặc tune theo Test.
+Không sử dụng các kết quả corpus tiếng Anh trong lịch sử Git cho nhánh này.
 
 ## Cấu trúc
 

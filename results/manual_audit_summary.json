@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "records_reviewed": 45,
+    "complete_and_correct_records": 45,
+    "filtered_records": 6,
+    "filter_compliant_records": 6
+  },
+  "grounding": {
+    "A": {
+      "label_distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 5
+      },
+      "mean_out_of_2": 2.0
+    },
+    "B": {
+      "label_distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 5
+      },
+      "mean_out_of_2": 2.0
+    },
+    "C": {
+      "label_distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 5
+      },
+      "mean_out_of_2": 2.0
+    }
+  },
+  "review_method": "Metadata was mechanically cross-checked against persisted chunks. Grounding labels were assigned after reading complete top-3 Test evidence; Codex labels require author confirmation.",
+  "limitations": "Single assisted reviewer and a five-question Test set introduce subjective and sampling bias."
+}

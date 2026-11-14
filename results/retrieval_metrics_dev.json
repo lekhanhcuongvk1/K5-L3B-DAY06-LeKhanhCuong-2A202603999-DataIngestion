@@ -1,0 +1,37 @@
+{
+  "metrics": [
+    {
+      "strategy": "A",
+      "split": "dev",
+      "questions": 15,
+      "hit_at_1_n": 10,
+      "hit_at_1_N": 15,
+      "hit_at_1_rate": 0.6666666666666666,
+      "evidence_hit_at_3_n": 12,
+      "evidence_hit_at_3_N": 15,
+      "evidence_hit_at_3_rate": 0.8
+    },
+    {
+      "strategy": "B",
+      "split": "dev",
+      "questions": 15,
+      "hit_at_1_n": 9,
+      "hit_at_1_N": 15,
+      "hit_at_1_rate": 0.6,
+      "evidence_hit_at_3_n": 14,
+      "evidence_hit_at_3_N": 15,
+      "evidence_hit_at_3_rate": 0.9333333333333333
+    },
+    {
+      "strategy": "C",
+      "split": "dev",
+      "questions": 15,
+      "hit_at_1_n": 9,
+      "hit_at_1_N": 15,
+      "hit_at_1_rate": 0.6,
+      "evidence_hit_at_3_n": 14,
+      "evidence_hit_at_3_N": 15,
+      "evidence_hit_at_3_rate": 0.9333333333333333
+    }
+  ]
+}

@@ -124,15 +124,16 @@ def main() -> None:
         hit["chunk_id"] for hit in trace_c["top3"]
     ]:
         fail("B/C differ on the unfiltered deterministic smoke query")
-    if (ROOT / "results" / ".test_completed").exists() or list(
-        (ROOT / "results").glob("traces/test_*.jsonl")
-    ):
-        fail("Test artifacts exist before CP4")
+    test_marker = ROOT / "results" / ".test_completed"
+    test_traces = list((ROOT / "results").glob("traces/test_*.jsonl"))
+    freeze = ROOT / "results" / "strategy_freeze.json"
+    if (test_marker.exists() or test_traces) and not (test_marker.exists() and freeze.exists()):
+        fail("Test artifacts exist without both the CP4 freeze and one-time marker")
 
     print(
         "CP3 validation OK: BKAI selected 14/15 vs MiniLM 12/15 Dev Hit@3; "
         "vector(768), A=759/B=418 persistent rows, 9 Dev smoke traces, filters and "
-        "idempotence PASS, Test unopened."
+        "idempotence PASS; CP3 metadata certifies Test was unopened at indexing time."
     )
 
 

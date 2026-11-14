@@ -1,0 +1,7 @@
+strategy,split,questions,hit_at_1_n,hit_at_1_N,hit_at_1_rate,evidence_hit_at_3_n,evidence_hit_at_3_N,evidence_hit_at_3_rate
+A,dev,15,10,15,0.6666666666666666,12,15,0.8
+A,test,5,3,5,0.6,4,5,0.8
+B,dev,15,9,15,0.6,14,15,0.9333333333333333
+B,test,5,3,5,0.6,4,5,0.8
+C,dev,15,9,15,0.6,14,15,0.9333333333333333
+C,test,5,3,5,0.6,4,5,0.8

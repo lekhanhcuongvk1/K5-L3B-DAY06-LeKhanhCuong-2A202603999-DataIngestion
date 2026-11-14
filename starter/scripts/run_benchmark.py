@@ -89,6 +89,13 @@ def retrieve_split(split_name: str) -> list[dict]:
             retrieval_started = time.perf_counter()
             hits = store.search(stored_strategy, vector, top_k=3, filters=filters)
             retrieval_ms = (time.perf_counter() - retrieval_started) * 1_000
+            if len(hits) != 3:
+                raise RuntimeError(f"{strategy}/{question['id']} returned {len(hits)} hits")
+            if filters and any(
+                any(hit["metadata"].get(key) != value for key, value in filters.items())
+                for hit in hits
+            ):
+                raise RuntimeError(f"{strategy}/{question['id']} violated its declared filter")
             trace = evaluate_query(question, hits)
             trace.update({
                 "strategy": strategy,
@@ -161,8 +168,19 @@ def freeze_strategy() -> None:
         "dev_metrics": metrics_payload["metrics"],
         "coherence_mean_by_strategy": coherence,
         "questions_sha256": sha256(QUESTIONS_PATH),
+        "frozen_artifacts_sha256": {
+            "data/manifest.json": sha256(ROOT / "data" / "manifest.json"),
+            "benchmark/split_manifest.json": sha256(SPLIT_PATH),
+            "results/chunks_A.jsonl": sha256(ROOT / "results" / "chunks_A.jsonl"),
+            "results/chunks_B.jsonl": sha256(ROOT / "results" / "chunks_B.jsonl"),
+            "results/model_selection.json": sha256(ROOT / "results" / "model_selection.json"),
+            "results/run_metadata.json": sha256(RUN_METADATA_PATH),
+        },
         "code_files_sha256": {
+            "chunking.py": sha256(STARTER / "src" / "chunking.py"),
             "embeddings.py": sha256(STARTER / "src" / "embeddings.py"),
+            "ingestion.py": sha256(STARTER / "src" / "ingestion.py"),
+            "run.py": sha256(STARTER / "src" / "run.py"),
             "store.py": sha256(STARTER / "src" / "store.py"),
             "evaluation.py": sha256(STARTER / "src" / "evaluation.py"),
             "run_benchmark.py": sha256(Path(__file__)),
@@ -183,6 +201,9 @@ def verify_freeze() -> dict:
         path = Path(__file__) if filename == "run_benchmark.py" else STARTER / "src" / filename
         if sha256(path) != expected:
             raise SystemExit(f"{filename} changed after strategy freeze")
+    for relative_path, expected in freeze["frozen_artifacts_sha256"].items():
+        if sha256(ROOT / relative_path) != expected:
+            raise SystemExit(f"{relative_path} changed after strategy freeze")
     return freeze
 
 

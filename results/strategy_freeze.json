@@ -1,0 +1,105 @@
+{
+  "frozen_at": "2026-11-14T09:31:13+07:00",
+  "stage": "after full Dev evaluation and before any Test retrieval",
+  "selected_strategy": "B",
+  "ranking": [
+    "B",
+    "C",
+    "A"
+  ],
+  "selection_rule": [
+    "Maximize Dev Evidence Hit@3 using the official full-evidence definition.",
+    "If tied, prefer higher mean manual coherence on the ten preselected source positions.",
+    "If still tied, prefer lower measured ingestion time, chunk count and operational complexity."
+  ],
+  "dev_metrics": [
+    {
+      "strategy": "A",
+      "split": "dev",
+      "questions": 15,
+      "hit_at_1_n": 10,
+      "hit_at_1_N": 15,
+      "hit_at_1_rate": 0.6666666666666666,
+      "evidence_hit_at_3_n": 12,
+      "evidence_hit_at_3_N": 15,
+      "evidence_hit_at_3_rate": 0.8
+    },
+    {
+      "strategy": "B",
+      "split": "dev",
+      "questions": 15,
+      "hit_at_1_n": 9,
+      "hit_at_1_N": 15,
+      "hit_at_1_rate": 0.6,
+      "evidence_hit_at_3_n": 14,
+      "evidence_hit_at_3_N": 15,
+      "evidence_hit_at_3_rate": 0.9333333333333333
+    },
+    {
+      "strategy": "C",
+      "split": "dev",
+      "questions": 15,
+      "hit_at_1_n": 9,
+      "hit_at_1_N": 15,
+      "hit_at_1_rate": 0.6,
+      "evidence_hit_at_3_n": 14,
+      "evidence_hit_at_3_N": 15,
+      "evidence_hit_at_3_rate": 0.9333333333333333
+    }
+  ],
+  "coherence_mean_by_strategy": {
+    "A": 1.2,
+    "B": 1.8,
+    "C": 1.8
+  },
+  "questions_sha256": "235c97d0a3db97f5a805a1d0a77351f78f0cdbef19363cbc00e35162f1f46305",
+  "frozen_artifacts_sha256": {
+    "data/manifest.json": "8ec2c4b01f41561cbba840d0091e1a234c000682b7c44788cfb336cd4226847d",
+    "benchmark/split_manifest.json": "2c62fcc0c2bad93abc677b218b61703d45c0b28f4af0f3961b5c28306db91f22",
+    "results/chunks_A.jsonl": "ac8fd08a54fa7c991f518f3b7409df2eac07a404b41f09101c658c6fae55ff05",
+    "results/chunks_B.jsonl": "8692b040f95d122c11cd9447d56129873ce4cd9160d7a89861bfb21611e78f7f",
+    "results/model_selection.json": "d0a87494a35d7596ec86b2ddda49a5586d62d4a7b1861550129e8d8216dc3561",
+    "results/run_metadata.json": "b23773f95c3882e16a16633e0407f0eba55df6c440ce3432ed4d50b054becc9f"
+  },
+  "code_files_sha256": {
+    "chunking.py": "5c41aaac395f23b76578a0122e628a8fdd48fe9b187ea71c10dc4fee09fc1990",
+    "embeddings.py": "e219eb272c1e1eb1dd22e2d5b4d8ffbcd714cb0c1e44b779c07886ff8d2df709",
+    "ingestion.py": "5fb7415a5a18a49cc7297a99ebdf399490a5d408d5dfadf9691e0881aa6004af",
+    "run.py": "12ab162065079bd49a713d6e96b49166f4c6b6d2827e4f72b95b4d98cee6fb50",
+    "store.py": "ede17fe24baf083e7b5ac50310d9fa98e877a2935dae6a2e7e82066810904288",
+    "evaluation.py": "50fb390240042be79bb49f92b0e68ba4577258c0147f807ca6211e1daf155632",
+    "run_benchmark.py": "e3cf0643c176e487c5a2c1e5de492e722598472de27ae124cf7a7daf886ea159"
+  },
+  "model": {
+    "provider": "local Sentence Transformers",
+    "name": "bkai-foundation-models/vietnamese-bi-encoder",
+    "revision": "84f9d9ada0d1a3c37557398b9ae9fcedcdf40be0",
+    "license": "Apache-2.0",
+    "dimensions": 768,
+    "device": "cpu",
+    "batch_size": 32,
+    "normalize_embeddings": true,
+    "query_document_processing": "same model and normalization",
+    "sentence_transformers_version": "5.7.0",
+    "transformers_version": "5.22.2",
+    "torch_version": "2.15.0"
+  },
+  "strategies": {
+    "A": {
+      "stored_strategy": "A",
+      "chunking": "fixed 500/overlap 50",
+      "filter": false
+    },
+    "B": {
+      "stored_strategy": "B",
+      "chunking": "paragraph-aware max 1000",
+      "filter": false
+    },
+    "C": {
+      "stored_strategy": "B",
+      "chunking": "identical to B/shared index",
+      "filter": "question.collection when supplied"
+    }
+  },
+  "test_retrieval_run_at_freeze": false
+}
