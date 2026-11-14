@@ -1,10 +1,10 @@
 # Day 06 · Data Ingestion Engineering
 
-**Lab cá nhân** · **Nhánh thử nghiệm corpus tiếng Việt**
+**Lab cá nhân** · **Corpus Wikipedia tiếng Việt**
 
-## Trạng thái triển khai
+## Tổng quan bài nộp
 
-CP0 đã hoàn thành cho corpus **Điện toán và ngôn ngữ lập trình — Wikipedia
+Corpus **Điện toán và ngôn ngữ lập trình — Wikipedia
 tiếng Việt**. Snapshot gồm 30 bài độc lập, 334.955 ký tự chuẩn hóa, chia đều
 giữa hai chuyên mục nguồn `Ngôn ngữ lập trình` và `Khoa học máy tính`. Mỗi bài
 có ít nhất 1.500 ký tự và giữ URL, page ID, revision ID, checksum cùng
@@ -23,26 +23,26 @@ kiến, chạy local CPU, chi phí API 0 USD). Chính sách so sánh model và b
 holdout được khóa trong
 [`artifacts/vietnamese_experiment_plan.json`](artifacts/vietnamese_experiment_plan.json).
 
-CP1 đã khóa benchmark tiếng Việt gồm 20 câu từ 20 bài khác nhau: 15 Dev / 5
+Benchmark tiếng Việt được khóa trước retrieval, gồm 20 câu từ 20 bài khác nhau: 15 Dev / 5
 Test, 5 câu có `collection` filter (2 Test), 20/20 evidence được validator xác
 minh và 10 vị trí coherence được chọn trước retrieval. Xem
 [`benchmark/questions.json`](benchmark/questions.json) và
 [`benchmark/split_manifest.json`](benchmark/split_manifest.json).
 
-CP2 đã xử lý đủ 30 đơn vị với 0 lỗi và tạo hai artifacts có truy vết: A fixed
+Pipeline xử lý đủ 30 đơn vị với 0 lỗi và tạo hai artifacts có truy vết: A fixed
 500 ký tự/overlap 50 có 759 chunks; B paragraph-aware tối đa 1.000 ký tự/không
 overlap có 418 chunks. Toàn bộ span, metadata, coverage và ID ổn định đã được
 [`validate_cp2.py`](starter/scripts/validate_cp2.py) kiểm tra; chạy lại tạo
 artifacts byte-identical.
 
-CP3 đã so sánh model trên cùng B chunks và 15 Dev: MiniLM đạt Hit@1 `10/15`,
+Model được so sánh trên cùng B chunks và 15 Dev: MiniLM đạt Hit@1 `10/15`,
 Evidence Hit@3 `12/15`; BKAI đạt Hit@1 `9/15`, Evidence Hit@3 `14/15`. Theo rule
 ưu tiên Hit@3 đã khóa, BKAI được chọn cho A/B/C. Index chính thức nằm ở bảng
 `day06_chunks_vi` với `vector(768)`, 759 hàng A và 418 hàng B; C dùng chung B và
 chỉ thêm `collection` filter. Hai lượt upsert giữ nguyên count, 9 smoke traces
 chỉ dùng Q01/Q04/Q10 thuộc Dev và Test chưa mở. Lần chạy chính thức đo được
 159,373 giây tổng, trong đó embedding A+B là 152,737 giây; chi phí API 0 USD.
-CP4 đã chạy A/B/C trên Dev, freeze B rồi mới chạy Test đúng một lần. Kết quả:
+A/B/C được chạy trên Dev, freeze B rồi mới chạy Test đúng một lần. Kết quả:
 
 | Strategy | Dev Hit@1 | Dev Evidence Hit@3 | Test Hit@1 | Test Evidence Hit@3 | Coherence /2 |
 |---|---:|---:|---:|---:|---:|
@@ -55,11 +55,9 @@ công đạt 2,0/2 cho cả ba strategy. Q18 vẫn được giữ là miss theo 
 metric dù top-3 có bằng chứng tương đương đủ trả lời. B được chọn trước Test vì
 Hit@3/coherence cao hơn và index nhỏ hơn A; C không tăng metric vì `collection`
 còn quá rộng. Xem [`strategy_comparison.md`](results/strategy_comparison.md).
-CP5 đã hoàn thành báo cáo cá nhân, kiểm tra cấu trúc nộp bài và tái xác minh toàn
-bộ artifacts mà không chạy lại Test. Báo cáo chính thức:
+Báo cáo cá nhân, cấu trúc nộp bài và toàn bộ artifacts đã được tái xác minh mà
+không chạy lại Test. Báo cáo chính thức:
 [`2A202603999_LeKhanhCuong.md`](report/individual/2A202603999_LeKhanhCuong.md).
-Kết quả tiếng Anh cũ được giữ trong lịch sử Git tại commit
-`7c311d6`, không được trình bày như kết quả corpus mới.
 
 ## Setup, chạy và xác minh
 

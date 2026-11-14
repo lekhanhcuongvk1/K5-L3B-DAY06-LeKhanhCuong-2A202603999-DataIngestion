@@ -1,14 +1,13 @@
 # Starter · PostgreSQL + pgvector
 
-Bài làm sử dụng Docker Compose để chạy PostgreSQL + pgvector local. Trên nhánh
-`experiment/vietnamese-corpus`, CP0 đã khóa corpus Wikipedia tiếng Việt và
-model ứng viên `bkai-foundation-models/vietnamese-bi-encoder`. CP1 đã khóa
-benchmark mới; CP2 đã tạo 759 chunks A và 418 chunks B với metadata
-`collection`. CP3 đã chọn BKAI bằng Dev-only model bake-off, tạo index
-`day06_chunks_vi` 768 chiều và xác minh A/B/C smoke, filter, persistence cùng
-idempotence. CP4 đã chọn B trên Dev, freeze rồi chạy Test đúng một lần; kết quả
-và audits nằm trong `../results/`. Không chạy lại Test hoặc tune theo Test.
-Không sử dụng các kết quả corpus tiếng Anh trong lịch sử Git cho nhánh này.
+Bài làm sử dụng Docker Compose để chạy PostgreSQL + pgvector local. Corpus
+Wikipedia tiếng Việt và benchmark được khóa trước retrieval. Pipeline tạo 759
+chunks A và 418 chunks B với metadata `collection`; model bake-off chỉ dùng Dev
+đã chọn `bkai-foundation-models/vietnamese-bi-encoder`, sau đó tạo index
+`day06_chunks_vi` 768 chiều và xác minh A/B/C, filter, persistence cùng
+idempotence. Strategy B được chọn trên Dev, freeze rồi mới chạy Test đúng một
+lần; kết quả và audits nằm trong `../results/`. Không chạy lại Test hoặc tune
+theo Test.
 
 ## Cấu trúc
 

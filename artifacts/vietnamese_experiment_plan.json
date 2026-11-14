@@ -1,8 +1,7 @@
 {
   "plan_version": 1,
   "created_at": "2026-11-13",
-  "branch": "experiment/vietnamese-corpus",
-  "hypothesis": "A Vietnamese-specialized bi-encoder on a Vietnamese corpus will improve monolingual semantic retrieval relative to the previous cross-lingual setup.",
+  "hypothesis": "A Vietnamese-specialized bi-encoder will improve Vietnamese semantic retrieval relative to the multilingual baseline evaluated on the same Dev questions and B chunks.",
   "primary_model_candidate": {
     "provider": "Hugging Face local",
     "name": "bkai-foundation-models/vietnamese-bi-encoder",
@@ -17,5 +16,5 @@
   "model_comparison_policy": "If a model bake-off is run, use Dev only on identical B chunks and queries. Freeze one model before the official A/B/C evaluation. Never use Test to choose a model.",
   "official_strategy_control": "Official A/B/C must use one frozen corpus, model, vector store, cosine metric and benchmark; A-B changes chunking and B-C changes only metadata filtering.",
   "holdout_policy": "Create and checksum a new Dev/Test split before any retrieval. Run Test once only after model and strategy freeze.",
-  "previous_results_policy": "The English-corpus CP5 commit 7c311d6 remains the historical baseline and is not overwritten or presented as directly comparable difficulty."
+  "submission_scope": "This plan describes the single Vietnamese-corpus lab submission."
 }

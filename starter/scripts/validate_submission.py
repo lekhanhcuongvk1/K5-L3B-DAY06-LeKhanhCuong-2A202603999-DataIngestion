@@ -53,6 +53,26 @@ def main() -> None:
     if "Họ và tên:\n" in student or "MSSV:\n" in student:
         fail("STUDENT.md still has blank identity fields")
 
+    submission_descriptions = "\n".join(
+        (ROOT / path).read_text(encoding="utf-8")
+        for path in (
+            "README.md",
+            "STUDENT.md",
+            "starter/README.md",
+            "artifacts/vietnamese_experiment_plan.json",
+        )
+    ).casefold()
+    for forbidden in (
+        "experiment/vietnamese-corpus",
+        "nhánh thử nghiệm",
+        "corpus tiếng anh",
+        "english-corpus",
+        "lịch sử git",
+        "previous cross-lingual setup",
+    ):
+        if forbidden in submission_descriptions:
+            fail(f"Submission description contains obsolete branch/history text: {forbidden!r}")
+
     manifest = json.loads((ROOT / "data" / "manifest.json").read_text(encoding="utf-8"))
     if manifest["summary"]["content_unit_count"] < 30:
         fail("Corpus has fewer than 30 valid units")

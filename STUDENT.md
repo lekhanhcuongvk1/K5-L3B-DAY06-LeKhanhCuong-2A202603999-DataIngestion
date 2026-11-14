@@ -5,5 +5,4 @@
 - Lớp: L3B
 - Chủ đề và corpus: Điện toán và ngôn ngữ lập trình — Wikipedia tiếng Việt (30 bài, CC BY-SA 4.0)
 - Repo bài nộp: https://github.com/lekhanhcuongvk1/K5-L3B-DAY06-LeKhanhCuong-2A202603999-DataIngestion
-- Commit chốt bài: `HEAD` của nhánh `experiment/vietnamese-corpus` sau commit CP5
-  (không dùng Test để tinh chỉnh sau commit CP4 `825c617`)
+- Commit chốt bài: commit cuối cùng chứa đầy đủ hồ sơ nộp bài
