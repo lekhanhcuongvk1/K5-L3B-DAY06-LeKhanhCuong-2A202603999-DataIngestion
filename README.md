@@ -55,10 +55,13 @@ công đạt 2,0/2 cho cả ba strategy. Q18 vẫn được giữ là miss theo 
 metric dù top-3 có bằng chứng tương đương đủ trả lời. B được chọn trước Test vì
 Hit@3/coherence cao hơn và index nhỏ hơn A; C không tăng metric vì `collection`
 còn quá rộng. Xem [`strategy_comparison.md`](results/strategy_comparison.md).
-CP5 chưa chạy. Kết quả tiếng Anh cũ được giữ trong lịch sử Git tại commit
+CP5 đã hoàn thành báo cáo cá nhân, kiểm tra cấu trúc nộp bài và tái xác minh toàn
+bộ artifacts mà không chạy lại Test. Báo cáo chính thức:
+[`2A202603999_LeKhanhCuong.md`](report/individual/2A202603999_LeKhanhCuong.md).
+Kết quả tiếng Anh cũ được giữ trong lịch sử Git tại commit
 `7c311d6`, không được trình bày như kết quả corpus mới.
 
-## Xác minh CP0
+## Setup, chạy và xác minh
 
 Yêu cầu: Python 3.11, Docker và mạng cho lần lấy corpus/model đầu tiên.
 
@@ -81,9 +84,14 @@ Push-Location starter
 Pop-Location
 starter\.venv\Scripts\python starter\scripts\validate_cp3.py
 starter\.venv\Scripts\python starter\scripts\validate_cp4.py
+python starter/scripts/validate_submission.py
 $env:PYTHONPATH = (Resolve-Path '.\starter\.venv\Lib\site-packages').Path
 python -m unittest discover -s tests -v
 ```
+
+`src.run` tái tạo embedding/index và chỉ chạy smoke trên Dev. Kết quả Test chính
+thức đã đóng băng; không gọi lại `run_benchmark.py --split test`. Người chấm có
+thể xác minh artifacts hiện có bằng các validator mà không cần mở lại holdout.
 
 Không chạy `download_vi_wikipedia.py --refresh` sau khi CP1 đã khóa benchmark,
 vì revision và thành viên chuyên mục có thể thay đổi.

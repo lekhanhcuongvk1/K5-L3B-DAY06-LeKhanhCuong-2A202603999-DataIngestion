@@ -44,7 +44,10 @@ def main() -> None:
         fail(f"Missing required submission paths: {missing}")
 
     student = (ROOT / "STUDENT.md").read_text(encoding="utf-8")
-    for expected in ("Lê Khánh Cường", "2A202603999", "L3B", "Python Tutorial"):
+    for expected in (
+        "Lê Khánh Cường", "2A202603999", "L3B",
+        "Điện toán và ngôn ngữ lập trình", "Wikipedia tiếng Việt",
+    ):
         if expected not in student:
             fail(f"STUDENT.md is missing {expected!r}")
     if "Họ và tên:\n" in student or "MSSV:\n" in student:
@@ -83,7 +86,10 @@ def main() -> None:
         experiments = list(csv.DictReader(source))
     if len(experiments) != 3 or {row["strategy"] for row in experiments} != {"A", "B", "C"}:
         fail("Experiment log does not contain complete A/B/C rows")
-    if any(not row["dev_hit3"] or not row["test_hit3"] for row in experiments):
+    if any(
+        not row["dev_evidence_hit_at_3"] or not row["test_evidence_hit_at_3"]
+        for row in experiments
+    ):
         fail("Experiment log contains blank measured metrics")
 
     for split, count in (("dev", 15), ("test", 5)):
@@ -107,7 +113,7 @@ def main() -> None:
         fail("Unable to scan implementation placeholders")
 
     print(
-        "Submission validation OK: required files, 68 units, 20 questions, "
+        "Submission validation OK: required files, 30 units, 20 questions, "
         "6 metric rows, A/B/C experiment log, traces, report values, and local links."
     )
 
